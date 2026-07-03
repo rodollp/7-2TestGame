@@ -326,3 +326,11 @@ HUD
 - [ ] 사운드
 - [ ] VFX
 - [ ] 저장
+
+# 7-13
+1. CreatureData 부모로 정리
+2. PlayerData 만들기
+3. PlayerData.asset 생성
+4. PlayerStatus에서 데이터 복사
+5. PlayerMove가 PlayerStatus.MoveSpeed 사용
+6. 실행해서 MoveSpeed 값을 바꾸면 이동속도가 바뀌는지 확인

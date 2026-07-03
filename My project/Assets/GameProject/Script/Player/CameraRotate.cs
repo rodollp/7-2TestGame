@@ -3,12 +3,17 @@ using UnityEngine.InputSystem;
 
 public class CameraRotate : MonoBehaviour
 {
-    [SerializeField] private Transform cameraTarget;
+    [SerializeField] private Transform cameraRoot;
+    [SerializeField] private Transform cameraPivot;
+
     [SerializeField] private float rotateSpeed = 120f;
+    [SerializeField] private float minPitch = -20f;
+    [SerializeField] private float maxPitch = 60f;
+
+    private float pitch;
 
     private void Start()
     {
-        // 마우스 커서를 화면 중앙에 고정
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -20,7 +25,11 @@ public class CameraRotate : MonoBehaviour
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         float yaw = mouseDelta.x * rotateSpeed * Time.deltaTime;
+        cameraRoot.Rotate(Vector3.up, yaw, Space.World);
 
-        cameraTarget.Rotate(Vector3.up, yaw, Space.World);
+        pitch -= mouseDelta.y * rotateSpeed * Time.deltaTime;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 }

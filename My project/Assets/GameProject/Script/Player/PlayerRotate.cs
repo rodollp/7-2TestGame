@@ -4,12 +4,16 @@ public class PlayerRotate : MonoBehaviour
 {
     [SerializeField] private PlayerInputHandler input;
     [SerializeField] private Transform visual;
-    [SerializeField] private Transform cameraTarget;
     [SerializeField] private float rotateSpeed = 12f;
+
+    private Camera mainCamera;
 
     private void Awake()
     {
-        if (input == null) input = GetComponent<PlayerInputHandler>();
+        mainCamera = Camera.main;
+
+        if (input == null)
+            input = GetComponent<PlayerInputHandler>();
     }
 
     private void Update()
@@ -21,8 +25,8 @@ public class PlayerRotate : MonoBehaviour
     {
         Vector2 moveInput = input.MoveInput;
 
-        Vector3 camForward = cameraTarget.forward;
-        Vector3 camRight = cameraTarget.right;
+        Vector3 camForward = mainCamera.transform.forward;
+        Vector3 camRight = mainCamera.transform.right;
 
         camForward.y = 0f;
         camRight.y = 0f;
@@ -37,10 +41,6 @@ public class PlayerRotate : MonoBehaviour
 
         Quaternion targetRot = Quaternion.LookRotation(dir);
 
-        visual.rotation = Quaternion.Slerp(
-            visual.rotation,
-            targetRot,
-            rotateSpeed * Time.deltaTime
-        );
+        visual.rotation = Quaternion.Slerp(visual.rotation,targetRot,rotateSpeed * Time.deltaTime);
     }
 }

@@ -4,17 +4,17 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private PlayerStatus status;
     [SerializeField] private PlayerInputHandler input;
-    [SerializeField] private Transform cameraTarget;
-
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkDistance = 0.3f;
+    [SerializeField] private Transform cameraRoot;
 
     private Rigidbody rb;
-    private bool isGround;
+    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
 
         if (status == null) status = GetComponent<PlayerStatus>();
         if (input == null) input = GetComponent<PlayerInputHandler>();
@@ -23,9 +23,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         if (input.JumpPressed)
-        {
             Jump();
-        }
     }
 
     private void FixedUpdate()
@@ -37,8 +35,8 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 moveInput = input.MoveInput;
 
-        Vector3 camForward = cameraTarget.forward;
-        Vector3 camRight = cameraTarget.right;
+        Vector3 camForward = cameraRoot.forward;
+        Vector3 camRight = cameraRoot.right;
 
         camForward.y = 0f;
         camRight.y = 0f;
@@ -54,7 +52,6 @@ public class PlayerMove : MonoBehaviour
             moveDir.z * status.MoveSpeed
         );
     }
-
     private void Jump()
     {
         if (CheckGround())
@@ -69,14 +66,12 @@ public class PlayerMove : MonoBehaviour
 
     private bool CheckGround()
     {
-        isGround = Physics.Raycast(
+        return Physics.Raycast(
             groundCheck.position,
             Vector3.down,
             checkDistance,
             Physics.DefaultRaycastLayers,
             QueryTriggerInteraction.Ignore
         );
-
-        return isGround;
     }
 }

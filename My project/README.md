@@ -334,3 +334,5 @@ HUD
 4. PlayerStatus에서 데이터 복사
 5. PlayerMove가 PlayerStatus.MoveSpeed 사용
 6. 실행해서 MoveSpeed 값을 바꾸면 이동속도가 바뀌는지 확인
+- 카메라 정면이 앞이 되게 설정했는데 위아래 회전 구현에 있어서 한계를 느끼고 CameraRoot(좌우)과 CameraPivot(상하)로 나눔
+- 시네머신 활용으로 보고 있긴하지만 뭔가 석연치 않음 개선 필요

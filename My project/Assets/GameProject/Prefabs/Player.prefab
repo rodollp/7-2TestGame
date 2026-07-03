@@ -276,9 +276,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 4538519880609672501}
   input: {fileID: 888461828037859305}
-  cameraTarget: {fileID: 7534374368975227946}
   groundCheck: {fileID: 5962803429679932565}
   checkDistance: 0.3
+  cameraRoot: {fileID: 7534374368975227946}
 --- !u!114 &888461828037859305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +328,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 888461828037859305}
   visual: {fileID: 6677000665163020786}
-  cameraTarget: {fileID: 7534374368975227946}
   rotateSpeed: 30
 --- !u!114 &7860255422733719503
 MonoBehaviour:

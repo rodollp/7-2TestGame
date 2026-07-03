@@ -1179,6 +1179,14 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+      propertyPath: cameraRoot
+      value: 
+      objectReference: {fileID: 923699640}
+    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+      propertyPath: cameraPivot
+      value: 
+      objectReference: {fileID: 1383043109}
+    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: cameraTarget
       value: 
       objectReference: {fileID: 923699640}

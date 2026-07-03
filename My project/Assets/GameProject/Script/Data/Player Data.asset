@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd90daec586d7445bf82c634d811f60, type: 3}
   m_Name: Player Data
   m_EditorClassIdentifier: 
-  creatureName: 
-  maxHp: 0
-  attackPower: 0
-  moveSpeed: 0
+  thisName: "\uC6A9\uC0AC"
+  maxHp: 500
+  attackPower: 30
+  moveSpeed: 10
+  jumpPower: 5

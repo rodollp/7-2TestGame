@@ -338,3 +338,11 @@ HUD
 - 시네머신 활용으로 보고 있긴하지만 뭔가 석연치 않음 개선 필요
 - 그로 인해서 PlayerMove 이동방식을 월드기준 >> 카메라 정면 기준으로 바꿈
 - PlayerRotate도 동일
+
+# 7-6
+1. WeaponData 추가
+2. PlayerAttack 구현, 여기에선 데미지를 어떻게 주는지만 계산
+3. AutoAttack 구현. weapon의 공격 범위 내에 있을시 공격하게 설정
+4. CreatureStatus로 Player와 Monster의 공통된 부분들을 포함시켰음.
+5. IDamageable 인터페이스 구현. TakeDamage()가 공통됨으로 이것을 포함하게 만들었음.(이 인터페이스를 가지고 있는 적을 공격하게 만들음)
+6. 몬스터 프리펩 구성

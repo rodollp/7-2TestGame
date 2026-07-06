@@ -197,6 +197,8 @@ GameObject:
   - component: {fileID: 1037377304849719349}
   - component: {fileID: 7689681825757545457}
   - component: {fileID: 7860255422733719503}
+  - component: {fileID: 2051751481475392376}
+  - component: {fileID: 8814783132365162659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -341,8 +343,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8169cbff5511c74baa33e4f87c250d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTarget: {fileID: 7534374368975227946}
+  cameraRoot: {fileID: 0}
+  cameraPivot: {fileID: 0}
   rotateSpeed: 120
+  minPitch: -20
+  maxPitch: 60
+--- !u!114 &2051751481475392376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272927003648111707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41867260d56fabe4998b1dafc638be05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 4538519880609672501}
+--- !u!114 &8814783132365162659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272927003648111707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608f95a54d17678498e70e26fe5e1c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttack: {fileID: 2051751481475392376}
+  targetObject: {fileID: 0}
 --- !u!1 &8671561742610010914
 GameObject:
   m_ObjectHideFlags: 0

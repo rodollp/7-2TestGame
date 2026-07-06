@@ -11,6 +11,9 @@ public class PlayerData : CreatureData
     /// </creature>
     /// 
 
-    public float jumpPower;
+    [SerializeField]private float jumpPower;
 
+    public float JumpPower => jumpPower;
+
+    
 }

@@ -9,7 +9,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Transform cameraRoot;
 
     private Rigidbody rb;
-    
 
     private void Awake()
     {
@@ -18,6 +17,8 @@ public class PlayerMove : MonoBehaviour
 
         if (status == null) status = GetComponent<PlayerStatus>();
         if (input == null) input = GetComponent<PlayerInputHandler>();
+
+        
     }
 
     private void Update()
@@ -46,32 +47,18 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 moveDir = camForward * moveInput.y + camRight * moveInput.x;
 
-        rb.linearVelocity = new Vector3(
-            moveDir.x * status.MoveSpeed,
-            rb.linearVelocity.y,
-            moveDir.z * status.MoveSpeed
-        );
+        rb.linearVelocity = new Vector3(moveDir.x * status.MoveSpeed,rb.linearVelocity.y,moveDir.z * status.MoveSpeed);
     }
     private void Jump()
     {
         if (CheckGround())
         {
-            rb.linearVelocity = new Vector3(
-                rb.linearVelocity.x,
-                status.JumpPower,
-                rb.linearVelocity.z
-            );
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x,status.JumpPower,rb.linearVelocity.z);
         }
     }
 
     private bool CheckGround()
     {
-        return Physics.Raycast(
-            groundCheck.position,
-            Vector3.down,
-            checkDistance,
-            Physics.DefaultRaycastLayers,
-            QueryTriggerInteraction.Ignore
-        );
+        return Physics.Raycast(groundCheck.position,Vector3.down,checkDistance,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Ignore);
     }
 }

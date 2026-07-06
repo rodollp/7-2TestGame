@@ -14,10 +14,10 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake()
     {
-        MaxHp = data.maxHp;
-        AttackPower = data.attackPower;
-        MoveSpeed = data.moveSpeed;
-        JumpPower = data.jumpPower;
+        MaxHp = data.MaxHp;
+        AttackPower = data.AttackPower;
+        MoveSpeed = data.MoveSpeed;
+        JumpPower = data.JumpPower;
         CurrentHp = MaxHp;
     }
 

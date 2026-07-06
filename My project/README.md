@@ -327,7 +327,7 @@ HUD
 - [ ] VFX
 - [ ] 저장
 
-# 7-13
+# 7-3
 1. CreatureData 부모로 정리
 2. PlayerData 만들기
 3. PlayerData.asset 생성

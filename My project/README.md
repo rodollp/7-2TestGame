@@ -340,9 +340,68 @@ HUD
 - PlayerRotate도 동일
 
 # 7-6
-1. WeaponData 추가
-2. PlayerAttack 구현, 여기에선 데미지를 어떻게 주는지만 계산
-3. AutoAttack 구현. weapon의 공격 범위 내에 있을시 공격하게 설정
-4. CreatureStatus로 Player와 Monster의 공통된 부분들을 포함시켰음.
-5. IDamageable 인터페이스 구현. TakeDamage()가 공통됨으로 이것을 포함하게 만들었음.(이 인터페이스를 가지고 있는 적을 공격하게 만들음)
-6. 몬스터 프리펩 구성
+
+## 데이터 구조
+
+### PlayerData
+- Player의 기본 능력치를 ScriptableObject로 분리
+- 최대 HP
+- 공격력
+- 이동속도
+- 점프력
+
+### MonsterData
+- Monster의 기본 능력치를 ScriptableObject로 분리
+- 이름
+- 최대 HP
+- 공격력
+- 이동속도
+- 경험치 보상
+- 골드 보상
+
+### WeaponData
+- 무기의 데이터를 ScriptableObject로 분리
+- 공격력
+- 공격 쿨타임
+- 공격 범위
+
+---
+
+## 전투 시스템
+
+### PlayerAttack
+- Player의 공격 처리 담당
+- 무기 공격력 + 플레이어 공격력을 합산하여 최종 데미지 계산
+- IDamageable 인터페이스를 통해 대상에게 데미지 적용
+
+### AutoAttack
+- 일정 시간마다 공격 쿨타임 계산
+- 가장 가까운 몬스터 탐색
+- 무기 사거리 내 몬스터인지 확인
+- 조건 충족 시 자동 공격 실행
+
+---
+
+## 몬스터 탐색
+
+- FindObjectsByType()을 이용하여 씬 내 모든 몬스터 탐색
+- 살아있는 몬스터만 탐색 대상에 포함
+- sqrMagnitude를 이용하여 가장 가까운 몬스터 선택
+- 선택된 몬스터를 자동 공격 대상으로 지정
+
+---
+
+## 구조 개선
+
+- AttackTest를 AutoAttack으로 변경
+- 공격 조건을 CanAttack() 함수로 분리
+- 사거리 확인을 IsInRange() 함수로 분리
+- 공격 로직을 Attack() 함수로 분리하여 역할 분리
+
+---
+
+## 확인 사항
+
+- 자동 공격 정상 동작 확인
+- 가장 가까운 몬스터 우선 공격 확인
+- WeaponData의 Range와 Cooldown이 정상적으로 적용되는 것 확인

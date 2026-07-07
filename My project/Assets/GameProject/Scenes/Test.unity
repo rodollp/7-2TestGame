@@ -714,11 +714,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &923699640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7534374368975227946, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-  m_PrefabInstance: {fileID: 3020729560727428709}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1140178771
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,10 +893,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5423325485752089748, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     - target: {fileID: 6845162508471142276, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -942,52 +933,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7829673432568420454, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 330585545}
-    - target: {fileID: 7829673432568420454, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: cameraTarget
-      value: 
-      objectReference: {fileID: 923699640}
-    - target: {fileID: 7829673432568420454, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: minPitch
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: cameraRoot
-      value: 
-      objectReference: {fileID: 923699640}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: cameraPivot
-      value: 
-      objectReference: {fileID: 1383043109}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: rotateSpeed
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: cameraTarget
-      value: 
-      objectReference: {fileID: 923699640}
     - target: {fileID: 8272927003648111707, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8814783132365162659, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
-    - target: {fileID: 8814783132365162659, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: targetObject
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7829673432568420454, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -8,15 +8,30 @@ public class MonsterAI : MonoBehaviour
     private NavMeshAgent agent;
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();   
+        agent = GetComponent<NavMeshAgent>();
         FindPlayer();
+
     }
+    private void OnEnable()
+    {
+        status.OnDead += StopMove;
+    }
+
+    private void OnDisable()
+    {
+        status.OnDead -= StopMove;
+    }
+
 
     private void Start()
     {
         agent.speed = status.MoveSpeed;
     }
 
+    private void StopMove()
+    {
+        agent.isStopped = true;
+    }
     void FindPlayer()
     {
         if (target != null) return;
@@ -31,7 +46,7 @@ public class MonsterAI : MonoBehaviour
 
     private void Update()
     {
-        if( agent ==  null ) return;
+        if (agent == null) return;
         agent.SetDestination(target.position);
     }
 

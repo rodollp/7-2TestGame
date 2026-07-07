@@ -18,3 +18,4 @@ MonoBehaviour:
   moveSpeed: 5
   exp: 50
   gold: 50
+  coolDown: 3

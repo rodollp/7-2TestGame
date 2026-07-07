@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5308425265159342371}
   - component: {fileID: 8849832855697017462}
   - component: {fileID: 8206445985023393100}
+  - component: {fileID: 8716175943104269077}
   m_Layer: 0
   m_Name: Godiln
   m_TagString: Untagged
@@ -140,6 +141,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8716175943104269077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223818793807292092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1298b89ce8bb1441872e111b077cc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 5308425265159342371}
 --- !u!1 &5635491043650640173
 GameObject:
   m_ObjectHideFlags: 0

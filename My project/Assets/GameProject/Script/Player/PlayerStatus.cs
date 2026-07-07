@@ -5,6 +5,10 @@ public class PlayerStatus : CreatureStatus
     [SerializeField] private PlayerData data;
 
     public string Name {  get; private set; }
+    public int Level { get; private set; }
+    public int CurrentExp {  get; private set; }
+    public int NeedExp {  get; private set; }
+
     public float JumpPower { get; private set; }
 
     private void Awake()

@@ -5,6 +5,27 @@ public class MonsterDamage : MonoBehaviour
     [SerializeField] private MonsterStatus status;
     private float attackTimer;
 
+
+    private void Awake()
+    {
+        if(status == null)
+        {
+            status = GetComponent<MonsterStatus>();
+        }
+    }
+
+    private void OnEnable()
+    {
+        status.OnDead += StopAttack;
+    }
+    private void OnDisable()
+    {
+        status.OnDead -= StopAttack;
+    }
+    void StopAttack()
+    {
+        enabled = false;
+    }
     private void OnCollisionStay(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;

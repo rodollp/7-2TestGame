@@ -31,4 +31,5 @@ public class PlayerStatus : CreatureStatus
         base.Die();
         Debug.Log("»ç¸Á");
     }
+
 }

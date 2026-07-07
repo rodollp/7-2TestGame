@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 6916082663036945501}
   - component: {fileID: 3853999330461270701}
   - component: {fileID: 5308425265159342371}
+  - component: {fileID: 8849832855697017462}
+  - component: {fileID: 8206445985023393100}
   m_Layer: 0
   m_Name: Godiln
   m_TagString: Untagged
@@ -102,6 +104,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 3c9644cf70b33c04287b38b7bc0e2220, type: 2}
+--- !u!114 &8849832855697017462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223818793807292092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe99dcc5c949e245a71b7a56558f09e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: {fileID: 5308425265159342371}
+  target: {fileID: 0}
+--- !u!195 &8206445985023393100
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223818793807292092}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5635491043650640173
 GameObject:
   m_ObjectHideFlags: 0

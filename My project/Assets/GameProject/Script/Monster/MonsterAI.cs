@@ -9,9 +9,12 @@ public class MonsterAI : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();   
-        agent.speed = status.MoveSpeed;
-
         FindPlayer();
+    }
+
+    private void Start()
+    {
+        agent.speed = status.MoveSpeed;
     }
 
     void FindPlayer()

@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: WeaponData
   m_EditorClassIdentifier: 
   weaponName: sword
-  damage: 5
-  cooldown: 0.5
-  range: 5
-  radius: 1
+  weaponType: 0
+  levels:
+  - damage: 10
+    cooldown: 1
+    range: 5
+    projectileCount: 0
+    projectileSpeed: 0
+    areaSize: 0

@@ -17,3 +17,6 @@ MonoBehaviour:
   attackPower: 30
   moveSpeed: 10
   jumpPower: 5
+  startLevel: 1
+  startNeedExp: 10
+  collectionRange: 1

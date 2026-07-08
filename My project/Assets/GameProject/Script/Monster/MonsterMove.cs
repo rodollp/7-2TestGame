@@ -46,6 +46,8 @@ public class MonsterAI : MonoBehaviour
 
     private void Update()
     {
+        if (target == null) return;
+        if (status == null) return;
         if (agent == null) return;
         agent.SetDestination(target.position);
     }

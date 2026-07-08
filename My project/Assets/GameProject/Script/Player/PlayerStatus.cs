@@ -11,6 +11,7 @@ public class PlayerStatus : CreatureStatus
 
     public float JumpPower { get; private set; }
 
+    public float CollectionRange {  get; private set; }
     private void Awake()
     {
         StartStatus();
@@ -25,6 +26,7 @@ public class PlayerStatus : CreatureStatus
         JumpPower = data.JumpPower;
         Level = data.StartLevel;
         NeedExp = data.NeedExp;
+        CollectionRange = data.CollectionRange;
         CurrentExp = 0;
 
         CurrentHp = MaxHp;
@@ -53,7 +55,7 @@ public class PlayerStatus : CreatureStatus
         MaxHp += 5;
         CurrentHp += 5;
         AttackPower += 5;
-        NeedExp += 10;
+        NeedExp += Level*10;
     }
     public override void TakeDamage(int damage)
     {

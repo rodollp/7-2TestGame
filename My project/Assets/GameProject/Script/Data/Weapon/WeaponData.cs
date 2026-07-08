@@ -1,26 +1,27 @@
+using Assets.GameProject.Script.Data.Weapon;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/WeaponData")]
+public enum WeaponType
+{
+    Melee,
+    Area,
+    Projectile
+}
+
+[CreateAssetMenu(menuName = "Data/Weapon")]
 public class WeaponData : ScriptableObject
 {
     [SerializeField] private string weaponName;
-    [SerializeField] private int damage;
-    [SerializeField] private float cooldown;
-    [SerializeField] private float range;
-    [SerializeField] private float radius;
+    [SerializeField] private WeaponType weaponType;
+    [SerializeField] private WeaponLevelData[] levels;
 
     public string WeaponName => weaponName;
-    public int Damage => damage;
-    public float Cooldown => cooldown;
-    public float Range => range;
+    public WeaponType WeaponType => weaponType;
+    public int MaxLevel => levels.Length;
 
-    public float Radius => radius;
-
-    private void OnValidate()
+    public WeaponLevelData GetLevelData(int level)
     {
-        damage = Mathf.Max(0, damage);
-        cooldown = Mathf.Max(0.1f, cooldown);
-        range = Mathf.Max(0f, range);
-        radius = Mathf.Max(0f, radius);
+        int index = Mathf.Clamp(level - 1, 0, levels.Length - 1);
+        return levels[index];
     }
 }

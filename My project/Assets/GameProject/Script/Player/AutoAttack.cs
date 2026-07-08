@@ -1,80 +1,63 @@
+using Assets.GameProject.Script;
 using UnityEngine;
 
 public class AutoAttack : MonoBehaviour
 {
     [SerializeField] private PlayerAttack playerAttack;
-    [SerializeField] private WeaponData weaponData;
 
-    private MonsterStatus target;
+    private WeaponStatus weaponStatus;
     private float timer;
 
-    private void Awake()
+    public void Init(WeaponStatus status)
     {
-        if (playerAttack == null)
-            playerAttack = GetComponent<PlayerAttack>();
+        weaponStatus = status;
     }
 
     private void Update()
     {
-        Attack();
-    }
+        if (weaponStatus == null) return;
 
-    private void Attack()
-    {
         timer += Time.deltaTime;
 
-        target = FindNearestMonster();
+        IDamageable target = FindNearestTarget();
 
-        if (CanAttack())
-        {
-            Debug.Log($"공격대상 : {target.Name}");
-            playerAttack.Damage(target, weaponData);
-            timer = 0f;
-        }
+        if (target == null) return;
+        if (!IsInRange(target)) return;
+        if (timer < weaponStatus.CurrentData.Cooldown) return;
+
+        playerAttack.Damage(target, weaponStatus);
+        timer = 0f;
     }
 
-    private MonsterStatus FindNearestMonster()
+    private bool IsInRange(IDamageable target)
+    {
+        MonoBehaviour targetObj = target as MonoBehaviour;
+        if (targetObj == null) return false;
+
+        float distance = Vector3.Distance(transform.position, targetObj.transform.position);
+        return distance <= weaponStatus.CurrentData.Range;
+    }
+
+    private IDamageable FindNearestTarget()
     {
         MonsterStatus[] monsters = FindObjectsByType<MonsterStatus>(FindObjectsSortMode.None);
 
-        MonsterStatus nearest = null;
-        float nearestDistance = float.MaxValue;
+        IDamageable nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
 
         foreach (MonsterStatus monster in monsters)
         {
-            if (monster == null) continue;
             if (monster.IsDead) continue;
 
-            float distance = (monster.transform.position - transform.position).sqrMagnitude;
+            float distance = Vector3.Distance(transform.position, monster.transform.position);
 
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
-                nearest = monster;
+                nearestTarget = monster;
             }
         }
 
-        return nearest;
-    }
-
-    private bool IsInRange()
-    {
-        if (target == null) return false;
-
-        float distance =
-            (target.transform.position - transform.position).sqrMagnitude;
-
-        return distance <= weaponData.Range * weaponData.Range;
-    }
-
-    private bool CanAttack()
-    {
-        if (weaponData == null) return false;
-        if (target == null) return false;
-        if (target.IsDead) return false;
-        if (timer < weaponData.Cooldown) return false;
-        if (!IsInRange()) return false;
-
-        return true;
+        return nearestTarget;
     }
 }

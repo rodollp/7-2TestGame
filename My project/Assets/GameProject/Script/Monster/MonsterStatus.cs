@@ -42,5 +42,6 @@ public class MonsterStatus : CreatureStatus
         base.Die();
         OnDead?.Invoke();
         Debug.Log("»ç¸Á");
+        Destroy(gameObject);
     }
 }

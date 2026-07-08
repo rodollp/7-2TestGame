@@ -199,6 +199,8 @@ GameObject:
   - component: {fileID: 7860255422733719503}
   - component: {fileID: 2051751481475392376}
   - component: {fileID: 8814783132365162659}
+  - component: {fileID: 2289173377645037460}
+  - component: {fileID: 5485636002039593930}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -374,7 +376,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAttack: {fileID: 2051751481475392376}
-  weaponData: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
+--- !u!114 &2289173377645037460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272927003648111707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979a9c00079325d4d894a7875ed83cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startGold: 0
+--- !u!114 &5485636002039593930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272927003648111707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424006d946cf94c4dabde91ba5d7c47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSlotCount: 3
+  autoAttack: {fileID: 8814783132365162659}
 --- !u!1 &8671561742610010914
 GameObject:
   m_ObjectHideFlags: 0

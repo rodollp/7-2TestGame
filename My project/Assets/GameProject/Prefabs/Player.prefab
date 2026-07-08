@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRoot: {fileID: 7534374368975227946}
   cameraPivot: {fileID: 5671036543205874638}
-  rotateSpeed: 60
+  rotateSpeed: 30
   minPitch: -10
   maxPitch: 60
 --- !u!114 &2051751481475392376

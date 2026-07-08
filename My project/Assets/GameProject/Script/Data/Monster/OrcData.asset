@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OrcData
   m_EditorClassIdentifier: 
   thisName: "\uC624\uD06C"
-  maxHp: 500
+  maxHp: 300
   attackPower: 20
   moveSpeed: 5
   exp: 50

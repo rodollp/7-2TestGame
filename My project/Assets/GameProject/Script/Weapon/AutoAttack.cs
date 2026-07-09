@@ -25,7 +25,7 @@ public class AutoAttack : MonoBehaviour
         if (!IsInRange(target)) return;
         if (timer < weaponStatus.CurrentData.Cooldown) return;
 
-        playerAttack.Damage(target, weaponStatus);
+        playerAttack.Damage(weaponStatus, target);
         timer = 0f;
     }
 

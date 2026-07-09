@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
             status = GetComponent<PlayerStatus>();
         }
     }
-    public void Damage(IDamageable target, WeaponStatus weaponStatus)
+    public void Damage(WeaponStatus weaponStatus, IDamageable target)
     {
         if (target == null) return;
         if (weaponStatus == null) return;

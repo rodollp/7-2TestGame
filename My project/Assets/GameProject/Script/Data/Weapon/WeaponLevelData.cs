@@ -1,11 +1,13 @@
 ﻿
 namespace Assets.GameProject.Script.Data.Weapon
 {
+    
     using UnityEngine;
-
+    
     [System.Serializable]
     public class WeaponLevelData
     {
+        [Header("레벨별 무기 스펙")]
         [SerializeField] private int damage = 10;
         [SerializeField] private float cooldown = 1f;
         [SerializeField] private float range = 5f;

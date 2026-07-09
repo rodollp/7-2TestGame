@@ -21,3 +21,27 @@ MonoBehaviour:
     projectileCount: 0
     projectileSpeed: 0
     areaSize: 0
+  - damage: 20
+    cooldown: 1
+    range: 5
+    projectileCount: 0
+    projectileSpeed: 0
+    areaSize: 0
+  - damage: 30
+    cooldown: 1
+    range: 5
+    projectileCount: 0
+    projectileSpeed: 0
+    areaSize: 0
+  - damage: 30
+    cooldown: 1
+    range: 10
+    projectileCount: 0
+    projectileSpeed: 0
+    areaSize: 0
+  - damage: 30
+    cooldown: 0.5
+    range: 10
+    projectileCount: 0
+    projectileSpeed: 0
+    areaSize: 0

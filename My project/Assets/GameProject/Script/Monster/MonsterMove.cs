@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterAI : MonoBehaviour
+public class MonsterMove : MonoBehaviour
 {
     [SerializeField] private MonsterStatus status;
     [SerializeField] Transform target;
@@ -30,7 +30,10 @@ public class MonsterAI : MonoBehaviour
 
     private void StopMove()
     {
+        if (agent == null || !agent.isActiveAndEnabled) return;
+
         agent.isStopped = true;
+        agent.ResetPath();
     }
     void FindPlayer()
     {
@@ -46,9 +49,10 @@ public class MonsterAI : MonoBehaviour
 
     private void Update()
     {
+        if (status == null || status.IsDead) return;
         if (target == null) return;
-        if (status == null) return;
-        if (agent == null) return;
+        if (agent == null || !agent.isActiveAndEnabled) return;
+
         agent.SetDestination(target.position);
     }
 

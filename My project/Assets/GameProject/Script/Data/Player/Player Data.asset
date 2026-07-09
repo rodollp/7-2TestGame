@@ -19,4 +19,4 @@ MonoBehaviour:
   jumpPower: 5
   startLevel: 1
   startNeedExp: 10
-  collectionRange: 1
+  collectionRange: 5

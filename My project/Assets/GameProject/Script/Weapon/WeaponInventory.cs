@@ -25,7 +25,7 @@ public class WeaponInventory : MonoBehaviour
         {
             ownedWeapon.LevelUp();
 
-            // 현재는 테스트용으로 이 무기를 AutoAttack에 연결
+            
             autoAttack.Init(ownedWeapon);
 
             Debug.Log($"{ownedWeapon.WeaponName} 레벨업! Lv.{ownedWeapon.CurrentLevel}");
@@ -38,7 +38,7 @@ public class WeaponInventory : MonoBehaviour
             {
                 weaponSlots[i] = new WeaponStatus(weaponData);
 
-                // 새로 얻은 무기를 AutoAttack에 연결
+                
                 autoAttack.Init(weaponSlots[i]);
 
                 Debug.Log($"{weaponData.WeaponName} 획득! Lv.1");

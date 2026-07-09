@@ -12,8 +12,7 @@ public class PlayerRotate : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        if (input == null)
-            input = GetComponent<PlayerInputHandler>();
+        if (input == null) input = GetComponent<PlayerInputHandler>();
     }
 
     private void Update()
@@ -36,8 +35,7 @@ public class PlayerRotate : MonoBehaviour
 
         Vector3 dir = camForward * moveInput.y + camRight * moveInput.x;
 
-        if (dir.sqrMagnitude < 0.001f)
-            return;
+        if (dir.sqrMagnitude < 0.001f) return;
 
         Quaternion targetRot = Quaternion.LookRotation(dir);
 

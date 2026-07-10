@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHp: 500
   attackPower: 30
   moveSpeed: 10
-  jumpPower: 5
+  jumpPower: 10
   startLevel: 1
   startNeedExp: 10
   collectionRange: 5

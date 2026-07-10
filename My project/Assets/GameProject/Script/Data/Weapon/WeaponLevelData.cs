@@ -5,15 +5,15 @@ namespace Assets.GameProject.Script.Data.Weapon
     using UnityEngine;
     
     [System.Serializable]
-    public class WeaponLevelData
+    public struct WeaponLevelData
     {
         [Header("레벨별 무기 스펙")]
-        [SerializeField] private int damage = 10;
-        [SerializeField] private float cooldown = 1f;
-        [SerializeField] private float range = 5f;
-        [SerializeField] private int projectileCount = 1;
-        [SerializeField] private float projectileSpeed = 10f;
-        [SerializeField] private float areaSize = 1f;
+        [SerializeField] private int damage;
+        [SerializeField] private float cooldown;
+        [SerializeField] private float range;
+        [SerializeField] private int projectileCount;
+        [SerializeField] private float projectileSpeed;
+        [SerializeField] private float areaSize;
 
         public int Damage => damage;
         public float Cooldown => cooldown;

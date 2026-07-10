@@ -1,65 +1,94 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
     [SerializeField] private int maxSlotCount = 3;
-    [SerializeField] private AutoAttack autoAttack;
 
-    private WeaponStatus[] weaponSlots;
+    private readonly List<WeaponStatus> weaponList = new();
+    private readonly Dictionary<WeaponData, WeaponStatus> weaponMap = new();
 
-    private void Awake()
-    {
-        weaponSlots = new WeaponStatus[maxSlotCount];
+    public IReadOnlyList<WeaponStatus> Weapons => weaponList;
+    public int CurrentCount => weaponList.Count;
+    public bool IsFull => CurrentCount >= maxSlotCount;
 
-        if (autoAttack == null)
-            autoAttack = GetComponent<AutoAttack>();
-    }
+    public event Action<WeaponStatus> OnWeaponAdded;
+    public event Action<WeaponStatus> OnWeaponLevelUp;
+    public event Action<WeaponStatus> OnWeaponRemoved;
 
     public bool AddWeapon(WeaponData weaponData)
     {
         if (weaponData == null) return false;
 
-        WeaponStatus ownedWeapon = FindWeapon(weaponData);
+        WeaponStatus weapon = FindWeapon(weaponData);
 
-        if (ownedWeapon != null)
+        if (weapon != null)
         {
-            ownedWeapon.LevelUp();
+            if (weapon.IsMaxLevel)
+            {
+                Debug.Log($"{weapon.WeaponName} 최대 레벨입니다.");
+                return false;
+            }
 
-            
-            autoAttack.Init(ownedWeapon);
+            weapon.LevelUp();
+            Debug.Log($"{weapon.WeaponName} 레벨업! Lv.{weapon.CurrentLevel}");
 
-            Debug.Log($"{ownedWeapon.WeaponName} 레벨업! Lv.{ownedWeapon.CurrentLevel}");
+            OnWeaponLevelUp?.Invoke(weapon);
             return true;
         }
 
-        for (int i = 0; i < weaponSlots.Length; i++)
+        if (IsFull)
         {
-            if (weaponSlots[i] == null)
-            {
-                weaponSlots[i] = new WeaponStatus(weaponData);
-
-                
-                autoAttack.Init(weaponSlots[i]);
-
-                Debug.Log($"{weaponData.WeaponName} 획득! Lv.1");
-                return true;
-            }
+            Debug.Log("무기 인벤토리가 가득 찼습니다.");
+            return false;
         }
 
-        Debug.Log("무기 인벤토리가 가득 찼습니다.");
-        return false;
+        WeaponStatus newWeapon = new WeaponStatus(weaponData);
+
+        weaponList.Add(newWeapon);
+        weaponMap.Add(weaponData, newWeapon);
+
+        Debug.Log($"{newWeapon.WeaponName} 획득!");
+
+        OnWeaponAdded?.Invoke(newWeapon);
+        return true;
     }
 
-    private WeaponStatus FindWeapon(WeaponData weaponData)
+    public WeaponStatus FindWeapon(WeaponData weaponData)
     {
-        for (int i = 0; i < weaponSlots.Length; i++)
-        {
-            if (weaponSlots[i] == null) continue;
+        TryFindWeapon(weaponData, out WeaponStatus weapon);
+        return weapon;
+    }
 
-            if (weaponSlots[i].Data == weaponData)
-                return weaponSlots[i];
+    public bool ContainsWeapon(WeaponData weaponData)
+    {
+        return TryFindWeapon(weaponData, out _);
+    }
+
+    public bool RemoveWeapon(WeaponData weaponData)
+    {
+        if (!TryFindWeapon(weaponData, out WeaponStatus weapon))
+        {
+            Debug.Log("삭제할 무기가 없습니다.");
+            return false;
         }
 
-        return null;
+        weaponMap.Remove(weaponData);
+        weaponList.Remove(weapon);
+
+        Debug.Log($"{weapon.WeaponName} 삭제!");
+
+        OnWeaponRemoved?.Invoke(weapon);
+        return true;
+    }
+
+    private bool TryFindWeapon(WeaponData weaponData, out WeaponStatus weapon)
+    {
+        weapon = null;
+
+        if (weaponData == null) return false;
+
+        return weaponMap.TryGetValue(weaponData, out weapon);
     }
 }

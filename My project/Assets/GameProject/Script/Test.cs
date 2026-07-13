@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class WeaponInventoryTest : MonoBehaviour
 {
     [SerializeField] private WeaponInventory inventory;
-    [SerializeField] private WeaponData testWeapon;
+    [SerializeField] private WeaponData testWeapon1;
+    [SerializeField] private WeaponData testWeapon2;
 
     private void Update()
     {
@@ -12,7 +13,11 @@ public class WeaponInventoryTest : MonoBehaviour
 
         if (Keyboard.current.kKey.wasPressedThisFrame)
         {
-            inventory.AddWeapon(testWeapon);
+            inventory.AddWeapon(testWeapon1);
+        }
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            inventory.AddWeapon(testWeapon2);   
         }
     }
 }

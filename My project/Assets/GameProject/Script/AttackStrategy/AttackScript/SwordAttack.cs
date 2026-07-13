@@ -1,11 +1,14 @@
 using Assets.GameProject.Script;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Weapon/Attack Strategy/Sword Attack")]
 public class SwordAttack : AttackStrategy
 {
-    public override void Attack(PlayerAttack playerAttack, WeaponStatus wepon, IDamageable target)
+    public override void Attack(
+        AttackContext context,
+        WeaponStatus weapon,
+        IDamageable target)
     {
-        playerAttack.Damage(wepon, target);
+        context.PlayerAttack.Damage(weapon, target);
     }
 }

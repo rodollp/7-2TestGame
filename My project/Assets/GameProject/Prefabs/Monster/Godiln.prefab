@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2859193077781372979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 8206445985023393100}
   - component: {fileID: 8716175943104269077}
   - component: {fileID: 5555213672922572899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Godiln
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4031786456659270942}
   - component: {fileID: 2589781391612824918}
   - component: {fileID: 9072192703380428157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

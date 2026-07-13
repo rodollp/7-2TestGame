@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 826fd74b37d0c1e42bdaeaedf589d074, type: 3}
-  m_Name: Sword Attack
+  m_Script: {fileID: 11500000, guid: 0d7f35527dde50e4095eadd8afb63422, type: 3}
+  m_Name: Arrow Attack
   m_EditorClassIdentifier: 
-  monsterLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  projectilePrefab: {fileID: 8183091312367538068, guid: fa90d50663560354e89361e03a3237d1, type: 3}

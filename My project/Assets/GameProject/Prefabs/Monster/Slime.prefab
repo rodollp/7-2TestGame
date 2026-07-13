@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6950554901804605572}
   - component: {fileID: 8412081661306165278}
   - component: {fileID: 5304592041247092163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2193620407240194681}
   - component: {fileID: 1132242052728252093}
   - component: {fileID: 8985857581279660673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6873310216346717329}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

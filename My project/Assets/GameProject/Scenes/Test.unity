@@ -581,7 +581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 1587656738}
-  testWeapon: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
+  testWeapon1: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
+  testWeapon2: {fileID: 11400000, guid: fe9f949d45d4e124eb4c20f18cbcac7c, type: 2}
 --- !u!4 &670959819
 Transform:
   m_ObjectHideFlags: 0
@@ -851,10 +852,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5423325485752089748, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6845162508471142276, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -900,14 +897,25 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8814783132365162659, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: weaponInventory
+      propertyPath: projectileSpawner
       value: 
-      objectReference: {fileID: 1587656738}
+      objectReference: {fileID: 3020729560727428710}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+--- !u!114 &3020729560727428710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3474740173405128900, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+  m_PrefabInstance: {fileID: 3020729560727428709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b6fe0983354644d968c8248091800f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4935517050398056253
 PrefabInstance:
   m_ObjectHideFlags: 0

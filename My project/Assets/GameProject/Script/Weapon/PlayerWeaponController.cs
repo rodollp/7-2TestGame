@@ -5,11 +5,17 @@ using UnityEngine;
 public class PlayerWeaponController : MonoBehaviour
 {
     [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private ProjectileSpawner projectileSpawner;
     [SerializeField] private WeaponInventory weaponInventory;
     [SerializeField] private TargetFinder targetFinder;
 
     private readonly Dictionary<WeaponStatus, float> attackTimers = new();
 
+    private AttackContext attackContext;
+    private void Awake()
+    {
+        attackContext = new(playerAttack, projectileSpawner);
+    }
     private void Update()
     {
         CheckWeapons();
@@ -24,7 +30,7 @@ public class PlayerWeaponController : MonoBehaviour
             if (!CanAttack(weapon))
                 continue;
 
-            if (Attack(weapon))
+            if (TryAttack(weapon))
                 ResetTimer(weapon);
         }
     }
@@ -47,21 +53,14 @@ public class PlayerWeaponController : MonoBehaviour
         attackTimers[weapon] = 0f;
     }
 
-    private bool Attack(WeaponStatus weapon)
+    private bool TryAttack(WeaponStatus weapon)
     {
-        IDamageable target = targetFinder.FindNearestTarget(
-            transform.position,
-            weapon.CurrentData.Range
-        );
+        IDamageable target = targetFinder.FindNearestTarget(transform.position,weapon.CurrentData.Range);
 
         if (target == null)
             return false;
 
-  //     weapon.Data.AttackStrategy.Attack(
-  //         playerAttack,
-  //         weapon,
-  //         target
-  //     );
+        weapon.Data.AttackStrategy.Attack(attackContext,weapon,target);
 
         return true;
     }

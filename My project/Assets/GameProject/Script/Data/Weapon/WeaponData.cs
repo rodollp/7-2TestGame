@@ -14,10 +14,12 @@ public class WeaponData : ScriptableObject
     [SerializeField] private string weaponName;
     [SerializeField] private WeaponType weaponType;
     [SerializeField] private WeaponLevelData[] levels;
+    [SerializeField] private AttackStrategy attackStrategy;
 
     public string WeaponName => weaponName;
     public WeaponType WeaponType => weaponType;
     public int MaxLevel => levels.Length;
+    public AttackStrategy AttackStrategy => attackStrategy;
 
     public WeaponLevelData GetLevelData(int level)
     {

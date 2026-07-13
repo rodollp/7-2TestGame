@@ -1,5 +1,4 @@
 using Assets.GameProject.Script;
-using Assets.GameProject.Script.Interface;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class PlayerWeaponController : MonoBehaviour
 {
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private WeaponInventory weaponInventory;
+    [SerializeField] private TargetFinder targetFinder;
 
     private readonly Dictionary<WeaponStatus, float> attackTimers = new();
 
@@ -24,10 +24,11 @@ public class PlayerWeaponController : MonoBehaviour
             if (!CanAttack(weapon))
                 continue;
 
-            Attack(weapon);
-            ResetTimer(weapon);
+            if (Attack(weapon))
+                ResetTimer(weapon);
         }
     }
+
     private void UpdateTimer(WeaponStatus weapon)
     {
         if (!attackTimers.ContainsKey(weapon))
@@ -46,10 +47,22 @@ public class PlayerWeaponController : MonoBehaviour
         attackTimers[weapon] = 0f;
     }
 
-    private void Attack(WeaponStatus weapon)
+    private bool Attack(WeaponStatus weapon)
     {
-        
-    }
+        IDamageable target = targetFinder.FindNearestTarget(
+            transform.position,
+            weapon.CurrentData.Range
+        );
 
-    
+        if (target == null)
+            return false;
+
+  //     weapon.Data.AttackStrategy.Attack(
+  //         playerAttack,
+  //         weapon,
+  //         target
+  //     );
+
+        return true;
+    }
 }

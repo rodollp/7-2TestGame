@@ -45,3 +45,4 @@ MonoBehaviour:
     projectileCount: 0
     projectileSpeed: 0
     areaSize: 0
+  attackStrategy: {fileID: 11400000, guid: aabc7b398d64a8a4ab76d4675c4ae5f3, type: 2}

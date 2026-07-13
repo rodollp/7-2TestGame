@@ -1,7 +1,7 @@
 using Assets.GameProject.Script;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float lifeTime = 5f;
@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb != null )
+        if (rb == null )
         {
             Debug.LogError("없습니다");
             enabled = false;

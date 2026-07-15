@@ -24,11 +24,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void Init(
-        Vector3 moveDirection,
-        float moveSpeed,
-        PlayerAttack attack,
-        WeaponStatus weaponStatus)
+    public void Init(Vector3 moveDirection,float moveSpeed,PlayerAttack attack,WeaponStatus weaponStatus)
     {
         direction = moveDirection.normalized;
         speed = moveSpeed;

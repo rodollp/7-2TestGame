@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f13813e3ba675d40930a3029afede3a, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b9c8413bbea944c8fbc6d5465723b3, type: 3}
   m_Name: OrcData
   m_EditorClassIdentifier: 
   thisName: "\uC624\uD06C"
@@ -18,4 +18,4 @@ MonoBehaviour:
   moveSpeed: 5
   exp: 50
   gold: 50
-  coolDown: 3
+  coolDown: 1

@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f13813e3ba675d40930a3029afede3a, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b9c8413bbea944c8fbc6d5465723b3, type: 3}
   m_Name: Monster Data
   m_EditorClassIdentifier: 
-  thisName: "\uACE0\uBE14\uB9B0"
+  thisName: 
   maxHp: 100
   attackPower: 10
   moveSpeed: 5
-  exp: 5
-  gold: 5
+  exp: 0
+  gold: 0
+  coolDown: 0

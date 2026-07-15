@@ -223,7 +223,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -561,6 +561,8 @@ GameObject:
   m_Component:
   - component: {fileID: 670959819}
   - component: {fileID: 670959818}
+  - component: {fileID: 670959821}
+  - component: {fileID: 670959820}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -583,7 +585,6 @@ MonoBehaviour:
   inventory: {fileID: 1587656738}
   testWeapon1: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
   testWeapon2: {fileID: 11400000, guid: fe9f949d45d4e124eb4c20f18cbcac7c, type: 2}
-  chest: {fileID: 0}
 --- !u!4 &670959819
 Transform:
   m_ObjectHideFlags: 0
@@ -599,6 +600,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670959820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670959817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eac6e0549169fd4183ea8a27eb9654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3020729560727428711}
+  minSpawnDistance: 15
+  maxSpawnDistance: 25
+  navMeshSampleDistance: 5
+--- !u!114 &670959821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670959817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d940922255677e144b26e66cc1e5f9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageData: {fileID: 11400000, guid: c9f77e2c16ee1754fae98e67e476280f, type: 2}
+  monsterSpawner: {fileID: 670959820}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 2297653405178426665, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4238001122545974324, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.478907
@@ -917,6 +952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b6fe0983354644d968c8248091800f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3020729560727428711 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6845162508471142276, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+  m_PrefabInstance: {fileID: 3020729560727428709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4935517050398056253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -928,6 +968,10 @@ PrefabInstance:
     - target: {fileID: 2297653405178426665, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297653405178426665, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4238001122545974324, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -989,6 +1033,10 @@ PrefabInstance:
     - target: {fileID: 4223818793807292092, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
       propertyPath: m_Name
       value: Godiln
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223818793807292092, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555213672922572899, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
       propertyPath: playerWallet

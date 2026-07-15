@@ -7,6 +7,7 @@ public class WeaponInventoryTest : MonoBehaviour
     [SerializeField] private WeaponData testWeapon1;
     [SerializeField] private WeaponData testWeapon2;
 
+    
     private void Update()
     {
         if (Keyboard.current == null) return;
@@ -19,5 +20,6 @@ public class WeaponInventoryTest : MonoBehaviour
         {
             inventory.AddWeapon(testWeapon2);   
         }
+        
     }
 }

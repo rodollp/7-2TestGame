@@ -35,7 +35,7 @@ public class MonsterDrop : MonoBehaviour
         if (goldOrbPrefab == null) return;
         
         GoldOrb orb = Instantiate(goldOrbPrefab,transform.position,Quaternion.identity);
-        orb.Init(status.Gold);
+        orb.Init(status.Gold,playerWallet);
 
         
     }
@@ -48,10 +48,5 @@ public class MonsterDrop : MonoBehaviour
         orb.Init(status.Exp);
     }
 
-    private void AddGold()
-    {
-        if (playerWallet == null) return;
-
-        playerWallet.AddGold(status.Gold);
-    }
+    
 }

@@ -583,6 +583,7 @@ MonoBehaviour:
   inventory: {fileID: 1587656738}
   testWeapon1: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
   testWeapon2: {fileID: 11400000, guid: fe9f949d45d4e124eb4c20f18cbcac7c, type: 2}
+  chest: {fileID: 0}
 --- !u!4 &670959819
 Transform:
   m_ObjectHideFlags: 0

@@ -8,24 +8,26 @@ public class GoldOrb : MonoBehaviour
     private PlayerWallet wallet;
     private int goldAmount;
 
-    public void Init(int gold)
+    public void Init(int gold, PlayerWallet target)
     {
         goldAmount = gold;
-    }
-
-    private void Awake()
-    {
-        wallet = FindAnyObjectByType<PlayerWallet>();
+        wallet = target;
     }
 
     private void Update()
     {
+        FollowPlayer();
+    }
+
+    private void FollowPlayer()
+    {
         if (wallet == null) return;
 
-        Vector3 dir = wallet.transform.position - transform.position;
-        float distance = dir.magnitude;
+        Vector3 targetPosition = wallet.transform.position;
 
-        transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position,targetPosition,moveSpeed * Time.deltaTime);
+
+        float distance = Vector3.Distance(transform.position,targetPosition);
 
         if (distance <= collectDistance)
         {

@@ -12,6 +12,7 @@ public class PlayerWeaponController : MonoBehaviour
     private readonly Dictionary<WeaponStatus, float> attackTimers = new();
 
     private AttackContext attackContext;
+
     private void Awake()
     {
         attackContext = new(playerAttack, projectileSpawner);

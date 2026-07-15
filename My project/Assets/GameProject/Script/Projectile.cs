@@ -1,3 +1,4 @@
+using System.Collections;
 using Assets.GameProject.Script;
 using UnityEngine;
 
@@ -43,12 +44,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    
+
     private void FixedUpdate()
     {
-        rb.MovePosition(
-            rb.position +
-            direction * speed * Time.fixedDeltaTime
-        );
+        rb.MovePosition(rb.position +direction * speed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

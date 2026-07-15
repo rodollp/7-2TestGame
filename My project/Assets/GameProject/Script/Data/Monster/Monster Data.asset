@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b9c8413bbea944c8fbc6d5465723b3, type: 3}
   m_Name: Monster Data
   m_EditorClassIdentifier: 
-  thisName: 
+  thisName: "\uB354\uBBF8"
   maxHp: 100
   attackPower: 10
-  moveSpeed: 5
+  moveSpeed: 0
   exp: 0
   gold: 0
   coolDown: 0

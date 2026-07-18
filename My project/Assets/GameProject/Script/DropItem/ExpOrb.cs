@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ExpOrb : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float collectDistance = 0.5f;
 
     private PlayerStatus player;

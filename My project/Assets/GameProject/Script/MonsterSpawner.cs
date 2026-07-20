@@ -70,15 +70,23 @@ public class MonsterSpawner : MonoBehaviour
         if (player == null)
             return false;
 
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        float randomDistance =Random.Range(minSpawnDistance, maxSpawnDistance);
-
-        Vector3 desiredPosition =player.position + new Vector3(randomDirection.x,0f,randomDirection.y) * randomDistance;
-
-        bool foundPosition = NavMesh.SamplePosition(desiredPosition,out NavMeshHit hit,navMeshSampleDistance,NavMesh.AllAreas);
-
-        if (!foundPosition)
+        // 플레이어 아래의 NavMesh 위치 찾기
+        if (!NavMesh.SamplePosition(player.position,out NavMeshHit playerHit,10f,NavMesh.AllAreas))
+        {
             return false;
+        }
+
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        float randomDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
+
+        Vector3 desiredPosition =
+            playerHit.position +
+            new Vector3(randomDirection.x, 0f, randomDirection.y) * randomDistance;
+
+        if (!NavMesh.SamplePosition(desiredPosition,out NavMeshHit hit,navMeshSampleDistance,NavMesh.AllAreas))
+        {
+            return false;
+        }
 
         spawnPosition = hit.position;
         return true;

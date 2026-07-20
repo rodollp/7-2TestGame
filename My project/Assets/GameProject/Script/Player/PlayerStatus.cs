@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerStatus : CreatureStatus
@@ -12,6 +13,8 @@ public class PlayerStatus : CreatureStatus
     public float JumpPower { get; private set; }
 
     public float CollectionRange {  get; private set; }
+
+    public event Action OnLevelUp;
     private void Awake()
     {
         StartStatus();
@@ -46,6 +49,7 @@ public class PlayerStatus : CreatureStatus
             CurrentExp -= NeedExp;
 
             ApplyLevelUpStats();
+            OnLevelUp?.Invoke();
         }
 
     }

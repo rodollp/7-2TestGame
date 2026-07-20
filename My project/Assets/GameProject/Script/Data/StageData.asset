@@ -16,8 +16,8 @@ MonoBehaviour:
   spawnDatas:
   - startTime: 0
     endTime: 60
-    spawnInterval: 2
-    spawnCount: 10
+    spawnInterval: 5
+    spawnCount: 1
     monsterPrefabs:
     - {fileID: 5285075149903092960, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
     - {fileID: 5308425265159342371, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}

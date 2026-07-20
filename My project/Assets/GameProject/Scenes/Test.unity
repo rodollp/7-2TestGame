@@ -890,6 +890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 2297653405178426665, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4238001122545974324, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.4542766
@@ -983,6 +987,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8272927003648111707, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1008,6 +1016,10 @@ PrefabInstance:
     - target: {fileID: 2297653405178426665, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
       propertyPath: m_Name
       value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297653405178426665, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4238001122545974324, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1069,6 +1081,10 @@ PrefabInstance:
     - target: {fileID: 4223818793807292092, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
       propertyPath: m_Name
       value: Godiln
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223818793807292092, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555213672922572899, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
       propertyPath: playerWallet

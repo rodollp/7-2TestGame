@@ -4,40 +4,90 @@ using UnityEngine.AI;
 public class MonsterMove : MonoBehaviour
 {
     [SerializeField] private MonsterStatus status;
-    [SerializeField] Transform target;
+    [SerializeField] private Transform target;
+    [SerializeField] private float pathUpdateInterval = 0.15f;
+
     private NavMeshAgent agent;
+    private float pathTimer;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         FindPlayer();
-
     }
+
     private void OnEnable()
     {
-        status.OnDead += StopMove;
+        if (status != null)
+        {
+            status.OnDead += StopMove;
+        }
+
+        pathTimer = 0f;
     }
 
     private void OnDisable()
     {
-        status.OnDead -= StopMove;
+        if (status != null)
+        {
+            status.OnDead -= StopMove;
+        }
     }
-
 
     private void Start()
     {
-        agent.speed = status.MoveSpeed;
+        if (agent != null && status != null)
+        {
+            agent.speed = status.MoveSpeed;
+        }
+    }
+
+    private void Update()
+    {
+        if (status == null || status.IsDead)
+        {
+            return;
+        }
+
+        if (target == null)
+        {
+            FindPlayer();
+            return;
+        }
+
+        if (agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        {
+            return;
+        }
+
+        pathTimer += Time.deltaTime;
+
+        if (pathTimer < pathUpdateInterval)
+        {
+            return;
+        }
+
+        pathTimer = 0f;
+        agent.SetDestination(target.position);
     }
 
     private void StopMove()
     {
-        if (agent == null || !agent.isActiveAndEnabled) return;
+        if (agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        {
+            return;
+        }
 
         agent.isStopped = true;
         agent.ResetPath();
     }
-    void FindPlayer()
+
+    private void FindPlayer()
     {
-        if (target != null) return;
+        if (target != null)
+        {
+            return;
+        }
 
         PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
 
@@ -46,14 +96,4 @@ public class MonsterMove : MonoBehaviour
             target = playerStatus.transform;
         }
     }
-
-    private void Update()
-    {
-        if (status == null || status.IsDead) return;
-        if (target == null) return;
-        if (agent == null || !agent.isActiveAndEnabled) return;
-
-        agent.SetDestination(target.position);
-    }
-
 }

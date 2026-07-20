@@ -3,52 +3,98 @@ using UnityEngine;
 public class MonsterDamage : MonoBehaviour
 {
     [SerializeField] private MonsterStatus status;
-    private float attackTimer;
 
+    private PlayerStatus targetPlayer;
+    private float attackTimer;
+    private bool canAttack;
 
     private void Awake()
     {
-        if(status == null)
+        if (status == null)
         {
-            status = GetComponent<MonsterStatus>();
+            status = GetComponentInParent<MonsterStatus>();
         }
     }
 
     private void OnEnable()
     {
-        status.OnDead += StopAttack;
+        attackTimer = 0f;
+        targetPlayer = null;
+        canAttack = true;
+
+        if (status != null)
+        {
+            status.OnDead += StopAttack;
+        }
     }
+
     private void OnDisable()
     {
-        status.OnDead -= StopAttack;
+        if (status != null)
+        {
+            status.OnDead -= StopAttack;
+        }
     }
-    void StopAttack()
+
+    private void Update()
     {
-        enabled = false;
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        if (!canAttack)
+        {
+            return;
+        }
+
+        if (targetPlayer == null)
+        {
+            return;
+        }
+
+        if (status == null || status.IsDead)
+        {
+            return;
+        }
 
         attackTimer += Time.deltaTime;
 
-        if (attackTimer >= status.AttackCoolDown)
+        if (attackTimer < status.AttackCoolDown)
         {
-            attackTimer = 0f;
+            return;
+        }
 
-            PlayerStatus player = collision.gameObject.GetComponent<PlayerStatus>();
-            if (player != null)
-            {
-                player.TakeDamage(status.AttackPower);
-            }
+        targetPlayer.TakeDamage(status.AttackPower);
+        attackTimer = 0f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        targetPlayer = other.GetComponentInParent<PlayerStatus>();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+        {
+            return;
+        }
+
+        PlayerStatus player =
+            other.GetComponentInParent<PlayerStatus>();
+
+        if (targetPlayer == player)
+        {
+            targetPlayer = null;
+            attackTimer = 0f;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void StopAttack()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            attackTimer = 0f;
-        }
+        canAttack = false;
+        targetPlayer = null;
+        attackTimer = 0f;
     }
 }

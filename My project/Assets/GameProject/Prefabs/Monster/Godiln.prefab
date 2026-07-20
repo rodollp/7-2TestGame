@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3338964058052138447}
   - component: {fileID: 7103880418308303011}
   - component: {fileID: 5453145407263746080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 5308425265159342371}
   target: {fileID: 0}
+  pathUpdateInterval: 0.15
 --- !u!195 &8206445985023393100
 NavMeshAgent:
   m_ObjectHideFlags: 0

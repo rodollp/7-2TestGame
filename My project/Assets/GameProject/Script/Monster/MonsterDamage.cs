@@ -81,8 +81,7 @@ public class MonsterDamage : MonoBehaviour
             return;
         }
 
-        PlayerStatus player =
-            other.GetComponentInParent<PlayerStatus>();
+        PlayerStatus player =other.GetComponentInParent<PlayerStatus>();
 
         if (targetPlayer == player)
         {

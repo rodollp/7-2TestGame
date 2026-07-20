@@ -88,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: {fileID: 5285075149903092960}
   target: {fileID: 0}
+  pathUpdateInterval: 0.15
 --- !u!195 &6950554901804605572
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ GameObject:
   - component: {fileID: 3973429345167356039}
   - component: {fileID: 1462746385737037948}
   - component: {fileID: 7945588283810510319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

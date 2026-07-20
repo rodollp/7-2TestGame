@@ -882,6 +882,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 58072266}
     m_Modifications:
+    - target: {fileID: 47069038660187409, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1427118418731588490, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
       propertyPath: playerWallet
       value: 
@@ -932,6 +936,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4238001122545974324, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345188395784205217, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -986,10 +994,6 @@ PrefabInstance:
     - target: {fileID: 6845162508471142276, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272927003648111707, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
       propertyPath: m_Name
@@ -1078,6 +1082,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 58072266}
     m_Modifications:
+    - target: {fileID: 1062645910676607147, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341973652179035321, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4223818793807292092, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
       propertyPath: m_Name
       value: Godiln

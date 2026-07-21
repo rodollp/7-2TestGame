@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerWallet : MonoBehaviour
@@ -5,6 +6,7 @@ public class PlayerWallet : MonoBehaviour
     [SerializeField] private int startGold;
 
     public int Gold { get; private set; }
+    public event Action<int> OnGoldChange;
 
     private void Awake()
     {
@@ -16,7 +18,8 @@ public class PlayerWallet : MonoBehaviour
         if (amount <= 0) return;
 
         Gold += amount;
-        Debug.Log($"°ñµå È¹µæ : {amount}, ÇöÀç °ñµå : {Gold}");
+
+        OnGoldChange?.Invoke(Gold);
     }
 
     public bool SpendGold(int amount)
@@ -25,7 +28,7 @@ public class PlayerWallet : MonoBehaviour
         if (Gold < amount) return false;
 
         Gold -= amount;
-        Debug.Log($"°ñµå »ç¿ë : {amount}, ÇöÀç °ñµå : {Gold}");
+        OnGoldChange?.Invoke(Gold);
         return true;
     }
 }

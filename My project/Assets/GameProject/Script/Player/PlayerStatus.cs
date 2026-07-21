@@ -15,6 +15,8 @@ public class PlayerStatus : CreatureStatus
     public float CollectionRange {  get; private set; }
 
     public event Action OnLevelUp;
+    public event Action OnDead;
+    public event Action<int,int> OnHpChange;
     private void Awake()
     {
         StartStatus();
@@ -60,19 +62,27 @@ public class PlayerStatus : CreatureStatus
         CurrentHp += 5;
         AttackPower += 5;
         NeedExp += Level*10;
+
+        ChangeHp();
     }
     public override void TakeDamage(int damage)
     {
         if (IsDead) return;
         base.TakeDamage(damage);
-        Debug.Log($"{Name}ÀÇ Hp : {CurrentHp}/{MaxHp}");
+        ChangeHp();
     }
 
     protected override void Die()
     {
         if (IsDead) return;
         base.Die();
-        Debug.Log("»ç¸Á");
+        OnDead?.Invoke();
+        
+        
     }
 
+    private void ChangeHp()
+    {
+        OnHpChange?.Invoke(CurrentHp,MaxHp);
+    }
 }

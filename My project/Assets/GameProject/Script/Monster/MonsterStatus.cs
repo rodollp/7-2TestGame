@@ -33,7 +33,7 @@ public class MonsterStatus : CreatureStatus
     {
         if(IsDead) return;
         base.TakeDamage(damage);
-        Debug.Log($"Hp : {CurrentHp}/{MaxHp}");
+        //Debug.Log($"Hp : {CurrentHp}/{MaxHp}"); 이벤트 적용?
     }
 
     protected override void Die()
@@ -41,7 +41,6 @@ public class MonsterStatus : CreatureStatus
         if (IsDead) return;
         base.Die();
         OnDead?.Invoke();
-        Debug.Log("사망");
-        Destroy(gameObject);
+        Destroy(gameObject); // 구조 바꾸기
     }
 }

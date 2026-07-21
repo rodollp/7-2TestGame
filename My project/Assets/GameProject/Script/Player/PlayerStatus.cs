@@ -12,11 +12,11 @@ public class PlayerStatus : CreatureStatus
 
     public float JumpPower { get; private set; }
 
-    public float CollectionRange {  get; private set; }
+    public float CollectionRange { get; private set; }
 
     public event Action OnLevelUp;
     public event Action OnDead;
-    public event Action<int,int> OnHpChange;
+    public event Action<int, int> OnHpChange;
     private void Awake()
     {
         StartStatus();
@@ -49,22 +49,13 @@ public class PlayerStatus : CreatureStatus
         {
             Level += 1;
             CurrentExp -= NeedExp;
+            NeedExp += Level * 10;
 
-            ApplyLevelUpStats();
             OnLevelUp?.Invoke();
         }
 
     }
 
-    private void ApplyLevelUpStats()
-    {
-        MaxHp += 5;
-        CurrentHp += 5;
-        AttackPower += 5;
-        NeedExp += Level*10;
-
-        ChangeHp();
-    }
     public override void TakeDamage(int damage)
     {
         if (IsDead) return;
@@ -77,12 +68,45 @@ public class PlayerStatus : CreatureStatus
         if (IsDead) return;
         base.Die();
         OnDead?.Invoke();
-        
-        
-    }
 
+
+    }
+    public void ApplyStatUpgrade(PlayerStatType statType, float value)
+    {
+        switch (statType)
+        {
+            case PlayerStatType.MaxHp:
+                {
+                    int amount = Mathf.RoundToInt(value);
+                    MaxHp += amount;
+                    CurrentHp = amount;
+                    ChangeHp();
+                    break;
+                }
+            case PlayerStatType.AttackPower:
+                {
+                    AttackPower += Mathf.RoundToInt(value);
+                    break;
+                }
+            case PlayerStatType.MoveSpeed:
+                {
+                    MoveSpeed += value;
+                    break;
+                }
+            case PlayerStatType.JumpPower:
+                {
+                    JumpPower += value;
+                    break;
+                }
+            case PlayerStatType.CollectionRange:
+                {
+                    CollectionRange += value;
+                    break;
+                }
+        }
+    }
     private void ChangeHp()
     {
-        OnHpChange?.Invoke(CurrentHp,MaxHp);
+        OnHpChange?.Invoke(CurrentHp, MaxHp);
     }
 }

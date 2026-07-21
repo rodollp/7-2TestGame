@@ -395,11 +395,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8169cbff5511c74baa33e4f87c250d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRotate
   cameraRoot: {fileID: 7534374368975227946}
   cameraPivot: {fileID: 5671036543205874638}
-  rotateSpeed: 30
-  minPitch: -10
+  rotateSpeed: 0.1
+  minPitch: -20
   maxPitch: 60
 --- !u!114 &2051751481475392376
 MonoBehaviour:

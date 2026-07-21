@@ -20,3 +20,4 @@ MonoBehaviour:
   startLevel: 1
   startNeedExp: 10
   collectionRange: 5
+  startWeapon: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}

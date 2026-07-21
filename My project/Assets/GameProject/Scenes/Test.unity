@@ -911,7 +911,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670959819}
-  - component: {fileID: 670959818}
   - component: {fileID: 670959821}
   - component: {fileID: 670959820}
   m_Layer: 0
@@ -921,21 +920,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &670959818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670959817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12b021334fabe8943b58bb3b3b80d97e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 1587656738}
-  testWeapon1: {fileID: 11400000, guid: c1b591c3c3b7acc43adec5679fdc5082, type: 2}
-  testWeapon2: {fileID: 11400000, guid: fe9f949d45d4e124eb4c20f18cbcac7c, type: 2}
 --- !u!4 &670959819
 Transform:
   m_ObjectHideFlags: 0
@@ -1890,17 +1874,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 979a9c00079325d4d894a7875ed83cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1587656738 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5485636002039593930, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
-  m_PrefabInstance: {fileID: 3020729560727428709}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424006d946cf94c4dabde91ba5d7c47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1617142542 stripped

@@ -16,11 +16,12 @@ public class PlayerData : CreatureData
     [SerializeField] private int startLevel;
     [SerializeField] private int startNeedExp;
     [SerializeField] private float collectionRange;
+    [SerializeField] WeaponData startWeapon;
     public float JumpPower => jumpPower;
     public int StartLevel => startLevel;
     public int NeedExp => startNeedExp;
     public float CollectionRange => collectionRange;
 
-
+    public WeaponData StartWeapon => startWeapon;
 
 }

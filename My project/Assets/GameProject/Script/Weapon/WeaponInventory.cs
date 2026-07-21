@@ -49,7 +49,7 @@ public class WeaponInventory : MonoBehaviour
         weaponList.Add(newWeapon);
         weaponMap.Add(weaponData, newWeapon);
 
-        Debug.Log($"{newWeapon.WeaponName} È¹µæ!");
+        //Debug.Log($"{newWeapon.WeaponName} È¹µæ!"); 
 
         OnWeaponAdded?.Invoke(newWeapon);
         return true;

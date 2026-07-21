@@ -17,6 +17,7 @@ public class PlayerStatus : CreatureStatus
     public event Action OnLevelUp;
     public event Action OnDead;
     public event Action<int, int> OnHpChange;
+    public event Action<int, int> OnExpChange;
     private void Awake()
     {
         StartStatus();
@@ -42,16 +43,18 @@ public class PlayerStatus : CreatureStatus
     {
         CurrentExp += exp;
         LevelUp();
+        OnExpChange?.Invoke(CurrentExp, NeedExp);
     }
     private void LevelUp()
     {
         while (CurrentExp >= NeedExp)
         {
-            Level += 1;
+            Level++;
             CurrentExp -= NeedExp;
             NeedExp += Level * 10;
 
             OnLevelUp?.Invoke();
+            OnExpChange?.Invoke(CurrentExp,NeedExp);
         }
 
     }
@@ -79,7 +82,7 @@ public class PlayerStatus : CreatureStatus
                 {
                     int amount = Mathf.RoundToInt(value);
                     MaxHp += amount;
-                    CurrentHp = amount;
+                    CurrentHp += amount;
                     ChangeHp();
                     break;
                 }

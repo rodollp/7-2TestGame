@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameTimer : MonoBehaviour
@@ -7,6 +8,12 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private StageData stageData;
 
     private float playTime;
+    private bool isStageTimeEnded;
+
+    public float PlayTime => playTime;
+    public bool IsStageTimeEnded => isStageTimeEnded;
+
+    public event Action OnStageTimeEnded;
 
     private void Awake()
     {
@@ -21,13 +28,26 @@ public class GameTimer : MonoBehaviour
         if (stageData == null)
             return;
 
+        if (isStageTimeEnded)
+            return;
+
         playTime += Time.deltaTime;
 
         if (playTime >= stageData.StageDuration)
         {
             playTime = stageData.StageDuration;
+            isStageTimeEnded = true;
+
+            UpdateTimerUI();
+            OnStageTimeEnded?.Invoke();
+            return;
         }
 
+        UpdateTimerUI();
+    }
+
+    private void UpdateTimerUI()
+    {
         float remainingWaveTime = GetRemainingWaveTime();
 
         gameUI.UpdatePlayTime(playTime);
@@ -38,7 +58,7 @@ public class GameTimer : MonoBehaviour
     {
         SpawnData[] spawnDatas = stageData.SpawnDatas;
 
-        if (spawnDatas == null || spawnDatas.Length == 0) 
+        if (spawnDatas == null || spawnDatas.Length == 0)
             return 0f;
 
         foreach (SpawnData spawnData in spawnDatas)
@@ -53,15 +73,14 @@ public class GameTimer : MonoBehaviour
             }
         }
 
-        // 현재 활성화된 웨이브가 없는 시간대
         return 0f;
     }
 
     public void ResetTimer()
     {
         playTime = 0f;
+        isStageTimeEnded = false;
 
-        gameUI.UpdatePlayTime(playTime);
-        gameUI.UpdateNextEventTime(GetRemainingWaveTime());
+        UpdateTimerUI();
     }
 }

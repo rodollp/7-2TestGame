@@ -4,34 +4,33 @@ public class MonsterSpawnSystem : MonoBehaviour
 {
     [SerializeField] private StageData stageData;
     [SerializeField] private MonsterSpawner monsterSpawner;
+    [SerializeField] private GameTimer gameTimer;
 
-    private float gameTimer;
     private float spawnTimer;
-
     private int currentSpawnIndex;
 
     private void Start()
     {
-        gameTimer = 0f;
-        spawnTimer = 0f;
-        currentSpawnIndex = 0;
+        ResetSpawnSystem();
     }
 
     private void Update()
     {
-        // 스테이지 데이터가 없거나 몬스터스포너가 없을경우에 실행취소
-        if (stageData == null || monsterSpawner == null)
+        if (stageData == null || monsterSpawner == null || gameTimer == null)
+        {
             return;
-        // 게임 타이머가 총 플레이 시간보다 같거나 크면 실행이 안되게 막기
-        if (gameTimer >= stageData.StageDuration)
+        }
+
+        if (gameTimer.IsStageTimeEnded)
             return;
-        //플레이 시간 저장
-        gameTimer += Time.deltaTime;
-        // 
+
         SpawnData currentSpawnData = GetCurrentSpawnData();
 
         if (currentSpawnData == null)
+        {
+            Debug.Log($"현재 SpawnData없음 / {gameTimer.PlayTime}");
             return;
+        }
 
         spawnTimer += Time.deltaTime;
 
@@ -45,7 +44,7 @@ public class MonsterSpawnSystem : MonoBehaviour
     private SpawnData GetCurrentSpawnData()
     {
         SpawnData[] spawnDatas = stageData.SpawnDatas;
-        //데이터가 없거나 한개도 안만들었으면 null
+
         if (spawnDatas == null || spawnDatas.Length == 0)
             return null;
 
@@ -53,10 +52,17 @@ public class MonsterSpawnSystem : MonoBehaviour
         {
             SpawnData currentData = spawnDatas[currentSpawnIndex];
 
-            if (gameTimer < currentData.StartTime)
+            if (currentData == null)
+            {
+                currentSpawnIndex++;
+                spawnTimer = 0f;
+                continue;
+            }
+
+            if (gameTimer.PlayTime < currentData.StartTime)
                 return null;
 
-            if (gameTimer < currentData.EndTime)
+            if (gameTimer.PlayTime < currentData.EndTime)
                 return currentData;
 
             currentSpawnIndex++;
@@ -64,5 +70,11 @@ public class MonsterSpawnSystem : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void ResetSpawnSystem()
+    {
+        spawnTimer = 0f;
+        currentSpawnIndex = 0;
     }
 }

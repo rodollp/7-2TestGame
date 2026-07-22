@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
-    [SerializeField] private PlayerStatus player;
 
     [Header("UI Panels")]
     [SerializeField] private GameObject titlePanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject levelUpPanel;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameClearPanel;
 
     [Header("연출")]
     [SerializeField] private GameUI gameUI;
@@ -20,14 +20,7 @@ public class GameStateManager : MonoBehaviour
         ChangeState(GameState.Title);
     }
 
-    private void OnEnable()
-    {
-        if(player != null) player.OnDead += GameOver;
-    }
-    private void OnDisable()
-    {
-        if (player != null) player.OnDead -= GameOver;
-    }
+    
 
     public void ChangeState(GameState newState)
     {
@@ -50,6 +43,10 @@ public class GameStateManager : MonoBehaviour
             case GameState.GameOver:
                 EnterGameOver();
                 break;
+            case GameState.GameClear:
+                EnterGameClear();
+                break;
+
         }
     }
 
@@ -57,30 +54,37 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(true);
         SetCursorState(true);
-        SetPanels(showTitle: true,showGame: false,showLevelUp: false,showGameOver: false);
+        SetPanels(showTitle: true,showGame: false,showLevelUp: false,showGameOver: false, showGameClear: false);
     }
 
     private void EnterPlaying()
     {
         SetGamePaused(false);
         SetCursorState(false);
-        SetPanels(showTitle: false,showGame: true,showLevelUp: false,showGameOver: false);
+        SetPanels(showTitle: false,showGame: true,showLevelUp: false,showGameOver: false, showGameClear: false);
     }
 
     private void EnterLevelUp()
     {
         SetGamePaused(true);
         SetCursorState(true);
-        SetPanels(showTitle: false,showGame: true,showLevelUp: true,showGameOver: false);
+        SetPanels(showTitle: false,showGame: true,showLevelUp: true,showGameOver: false, showGameClear: false);
     }
 
     private void EnterGameOver()
     {
         SetGamePaused(true);
         SetCursorState(true);
-        SetPanels(showTitle: false,showGame: false,showLevelUp: false,showGameOver: true);
+        SetPanels(showTitle: false,showGame: false,showLevelUp: false,showGameOver: true,showGameClear: false);
     }
 
+    private void EnterGameClear()
+    {
+        SetGamePaused(true);
+        SetCursorState(true);
+
+        SetPanels(showTitle: false,showGame: false,showLevelUp: false,showGameOver: false,showGameClear: true);
+    }
     private void SetGamePaused(bool isPaused)
     {
         Time.timeScale = isPaused ? 0f : 1f;
@@ -92,12 +96,13 @@ public class GameStateManager : MonoBehaviour
         Cursor.lockState = isVisible? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-    private void SetPanels(bool showTitle,bool showGame,bool showLevelUp,bool showGameOver)
+    private void SetPanels(bool showTitle,bool showGame,bool showLevelUp,bool showGameOver ,bool showGameClear)
     {
         titlePanel.SetActive(showTitle);
         gamePanel.SetActive(showGame);
         levelUpPanel.SetActive(showLevelUp);
         gameOverPanel.SetActive(showGameOver);
+        gameClearPanel.SetActive(showGameClear);
     }
 
     public void ReloadScene()
@@ -117,7 +122,7 @@ public class GameStateManager : MonoBehaviour
     public void StartGame()
     {
         ChangeState(GameState.Playing);
-        gameUI.ShowStartMessage("5초마다 적들이 몰려옵니다", 3f);
+        gameUI.ShowStartMessage("5초 후 적들이 몰려옵니다", 3f);
         
     }
 
@@ -137,5 +142,14 @@ public class GameStateManager : MonoBehaviour
         ChangeState(GameState.GameOver);
     }
 
-    
+    public void GameClear()
+    {
+        if (CurrentState == GameState.GameClear || CurrentState == GameState.GameOver)
+        {
+            return;
+        }
+
+        ChangeState(GameState.GameClear);
+    }
+
 }

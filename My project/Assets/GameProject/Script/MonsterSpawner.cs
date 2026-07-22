@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class MonsterSpawner : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private MonsterManager monsterManager;
 
     [Header("플레이어 주변 소환 범위")]
     [SerializeField] private float minSpawnDistance = 15f;
@@ -14,14 +15,19 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Awake()
     {
-        if (player != null)
-            return;
-
-        PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
-
-        if (playerStatus != null)
+        if (player == null)
         {
-            player = playerStatus.transform;
+            PlayerStatus playerStatus = FindAnyObjectByType<PlayerStatus>();
+
+            if (playerStatus != null)
+            {
+                player = playerStatus.transform;
+            }
+        }
+
+        if (monsterManager == null)
+        {
+            monsterManager = FindAnyObjectByType<MonsterManager>();
         }
     }
 
@@ -60,7 +66,17 @@ public class MonsterSpawner : MonoBehaviour
             return;
         }
 
-        Instantiate(selectedPrefab,spawnPosition,Quaternion.identity);
+        MonsterStatus spawnedMonster =
+            Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
+
+        if (monsterManager == null)
+        {
+            Debug.LogError("MonsterManager가 연결되어 있지 않습니다.");
+            Destroy(spawnedMonster.gameObject);
+            return;
+        }
+
+        monsterManager.RegisterMonster(spawnedMonster);
     }
 
     private bool TryGetSpawnPosition(out Vector3 spawnPosition)
@@ -70,8 +86,7 @@ public class MonsterSpawner : MonoBehaviour
         if (player == null)
             return false;
 
-        // 플레이어 아래의 NavMesh 위치 찾기
-        if (!NavMesh.SamplePosition(player.position,out NavMeshHit playerHit,10f,NavMesh.AllAreas))
+        if (!NavMesh.SamplePosition(player.position, out NavMeshHit playerHit, 10f, NavMesh.AllAreas))
         {
             return false;
         }
@@ -79,11 +94,9 @@ public class MonsterSpawner : MonoBehaviour
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         float randomDistance = Random.Range(minSpawnDistance, maxSpawnDistance);
 
-        Vector3 desiredPosition =
-            playerHit.position +
-            new Vector3(randomDirection.x, 0f, randomDirection.y) * randomDistance;
+        Vector3 desiredPosition = playerHit.position + new Vector3(randomDirection.x, 0f, randomDirection.y) * randomDistance;
 
-        if (!NavMesh.SamplePosition(desiredPosition,out NavMeshHit hit,navMeshSampleDistance,NavMesh.AllAreas))
+        if (!NavMesh.SamplePosition(desiredPosition, out NavMeshHit hit, navMeshSampleDistance, NavMesh.AllAreas))
         {
             return false;
         }

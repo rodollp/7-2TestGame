@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9ff167baf814048928a76c67c89243, type: 3}
   m_Name: StageData
   m_EditorClassIdentifier: 
-  stageDuration: 30
+  stageDuration: 150
   spawnDatas:
   - startTime: 0
     endTime: 60
-    spawnInterval: 2
+    spawnInterval: 5
     spawnCount: 5
     monsterPrefabs:
     - {fileID: 5285075149903092960, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
     - {fileID: 5308425265159342371, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}
-    - {fileID: 5285075149903092960, guid: 0b64e78d53f735e4a82d02fa76b10eaa, type: 3}
+  - startTime: 60
+    endTime: 120
+    spawnInterval: 5
+    spawnCount: 10
+    monsterPrefabs:
+    - {fileID: 5285075149903092960, guid: 1dcc3645022fd2644a774d12193d2fa3, type: 3}
+    - {fileID: 5308425265159342371, guid: 1c4f412b62d61144c96b7454afc111d3, type: 3}

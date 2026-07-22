@@ -91,4 +91,18 @@ public class WeaponInventory : MonoBehaviour
 
         return weaponMap.TryGetValue(weaponData, out weapon);
     }
+
+    public bool CanAddWeapon(WeaponData weaponData)
+    {
+        if (weaponData == null) return false;
+
+        WeaponStatus weapon = FindWeapon(weaponData);
+        
+        if (weapon != null)
+        {
+            return !weapon.IsMaxLevel;
+        }
+
+        return !IsFull;
+    }
 }

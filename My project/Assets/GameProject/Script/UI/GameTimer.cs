@@ -28,10 +28,33 @@ public class GameTimer : MonoBehaviour
             playTime = stageData.StageDuration;
         }
 
-        float remainingTime = stageData.StageDuration - playTime;
+        float remainingWaveTime = GetRemainingWaveTime();
 
         gameUI.UpdatePlayTime(playTime);
-        gameUI.UpdateNextEventTime(remainingTime);
+        gameUI.UpdateNextEventTime(remainingWaveTime);
+    }
+
+    private float GetRemainingWaveTime()
+    {
+        SpawnData[] spawnDatas = stageData.SpawnDatas;
+
+        if (spawnDatas == null || spawnDatas.Length == 0) 
+            return 0f;
+
+        foreach (SpawnData spawnData in spawnDatas)
+        {
+            bool isCurrentWave =
+                playTime >= spawnData.StartTime &&
+                playTime < spawnData.EndTime;
+
+            if (isCurrentWave)
+            {
+                return spawnData.EndTime - playTime;
+            }
+        }
+
+        // 현재 활성화된 웨이브가 없는 시간대
+        return 0f;
     }
 
     public void ResetTimer()
@@ -39,10 +62,6 @@ public class GameTimer : MonoBehaviour
         playTime = 0f;
 
         gameUI.UpdatePlayTime(playTime);
-
-        if (stageData != null)
-        {
-            gameUI.UpdateNextEventTime(stageData.StageDuration);
-        }
+        gameUI.UpdateNextEventTime(GetRemainingWaveTime());
     }
 }

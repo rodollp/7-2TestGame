@@ -5,6 +5,8 @@ public class LevelUpManager : MonoBehaviour
 {
     [SerializeField] private List<LevelUpRewardData> rewardPool;
 
+    [Header("References")]
+    [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private LevelUpRewardButton[] rewardButtons;
     [SerializeField] private WeaponInventory weaponInventory;
@@ -41,11 +43,23 @@ public class LevelUpManager : MonoBehaviour
 
         if (rewardPool == null || rewardPool.Count == 0)
         {
-            Debug.LogWarning("������ ���� Ǯ�� ��� �ֽ��ϴ�.");
             return;
         }
 
-        List<LevelUpRewardData> candidates = new(rewardPool);
+        List<LevelUpRewardData> candidates = new();
+
+        foreach (LevelUpRewardData reward in rewardPool)
+        {
+            if (CanSelectReward(reward))
+            {
+                candidates.Add(reward);
+            }
+        }
+
+        if (candidates.Count == 0)
+        {
+            return;
+        }
 
         int selectCount = Mathf.Min(count, candidates.Count);
 
@@ -104,6 +118,22 @@ public class LevelUpManager : MonoBehaviour
                 return weaponInventory.AddWeapon(
                     reward.WeaponData
                 );
+        }
+
+        return false;
+    }
+    private bool CanSelectReward(LevelUpRewardData reward)
+    {
+        if (reward == null)
+            return false;
+
+        switch (reward.RewardType)
+        {
+            case LevelUpRewardType.PlayerStat:
+                return true;
+
+            case LevelUpRewardType.Weapon:
+                return weaponInventory.CanAddWeapon(reward.WeaponData);
         }
 
         return false;

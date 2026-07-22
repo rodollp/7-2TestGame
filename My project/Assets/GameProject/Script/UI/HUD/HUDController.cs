@@ -8,7 +8,7 @@ public class HUDController : MonoBehaviour
 
     private void Start()
     {
-        InitializeHUD();
+        ShowToHUD();
     }
 
     private void OnEnable()
@@ -23,7 +23,7 @@ public class HUDController : MonoBehaviour
         playerWallet.OnGoldChange -= gameUI.UpdateGold;
     }
 
-    private void InitializeHUD()
+    private void ShowToHUD()
     {
         gameUI.UpdatePlayerHp(playerStatus.CurrentHp,playerStatus.MaxHp);
 

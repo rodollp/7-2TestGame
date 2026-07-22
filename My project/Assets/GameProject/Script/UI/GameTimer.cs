@@ -4,12 +4,9 @@ public class GameTimer : MonoBehaviour
 {
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private GameUI gameUI;
-
-    [Header("Timer")]
-    [SerializeField] private float eventInterval = 60f;
+    [SerializeField] private StageData stageData;
 
     private float playTime;
-    private float nextEventTime;
 
     private void Awake()
     {
@@ -21,30 +18,31 @@ public class GameTimer : MonoBehaviour
         if (gameStateManager.CurrentState != GameState.Playing)
             return;
 
-        playTime += Time.deltaTime;
-        nextEventTime -= Time.deltaTime;
+        if (stageData == null)
+            return;
 
-        if (nextEventTime <= 0f)
+        playTime += Time.deltaTime;
+
+        if (playTime >= stageData.StageDuration)
         {
-            nextEventTime = eventInterval;
-            OnEvent();
+            playTime = stageData.StageDuration;
         }
 
-        gameUI.UpdatePlayTime(playTime);
-        gameUI.UpdateNextEventTime(nextEventTime);
-    }
+        float remainingTime = stageData.StageDuration - playTime;
 
-    private void OnEvent()
-    {
-        Debug.Log("다음 이벤트 발생!");
+        gameUI.UpdatePlayTime(playTime);
+        gameUI.UpdateNextEventTime(remainingTime);
     }
 
     public void ResetTimer()
     {
         playTime = 0f;
-        nextEventTime = eventInterval;
 
         gameUI.UpdatePlayTime(playTime);
-        gameUI.UpdateNextEventTime(nextEventTime);
+
+        if (stageData != null)
+        {
+            gameUI.UpdateNextEventTime(stageData.StageDuration);
+        }
     }
 }

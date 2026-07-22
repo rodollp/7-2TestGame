@@ -1,18 +1,32 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] private PlayerStatus player;
+
     [Header("UI Panels")]
     [SerializeField] private GameObject titlePanel;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject levelUpPanel;
     [SerializeField] private GameObject gameOverPanel;
 
+    [Header("연출")]
+    [SerializeField] private GameUI gameUI;
     public GameState CurrentState { get; private set; }
 
     private void Awake()
     {
         ChangeState(GameState.Title);
+    }
+
+    private void OnEnable()
+    {
+        if(player != null) player.OnDead += GameOver;
+    }
+    private void OnDisable()
+    {
+        if (player != null) player.OnDead -= GameOver;
     }
 
     public void ChangeState(GameState newState)
@@ -86,9 +100,25 @@ public class GameStateManager : MonoBehaviour
         gameOverPanel.SetActive(showGameOver);
     }
 
+    public void ReloadScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Time.timeScale = 1f;
+        Application.Quit();
+    #if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying= false;
+    #endif
+    }
     public void StartGame()
     {
         ChangeState(GameState.Playing);
+        gameUI.ShowStartMessage("5초마다 적들이 몰려옵니다", 3f);
+        
     }
 
     public void OpenLevelUp()
@@ -103,11 +133,9 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
+        if(CurrentState == GameState.GameOver) return;
         ChangeState(GameState.GameOver);
     }
 
-    public void ReturnToTitle()
-    {
-        ChangeState(GameState.Title);
-    }
+    
 }

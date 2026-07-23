@@ -27,12 +27,10 @@ public class WeaponInventory : MonoBehaviour
         {
             if (weapon.IsMaxLevel)
             {
-                Debug.Log($"{weapon.WeaponName} 최대 레벨입니다.");
                 return false;
             }
 
-            weapon.LevelUp();
-            Debug.Log($"{weapon.WeaponName} 레벨업! Lv.{weapon.CurrentLevel}");
+            weapon.LevelUp(); // 연결? 
 
             OnWeaponLevelUp?.Invoke(weapon);
             return true;
@@ -40,7 +38,7 @@ public class WeaponInventory : MonoBehaviour
 
         if (IsFull)
         {
-            Debug.Log("무기 인벤토리가 가득 찼습니다.");
+            // 인벤토리 가득 찼을때 뜨는 이벤트? 텍스트?
             return false;
         }
 
@@ -70,14 +68,14 @@ public class WeaponInventory : MonoBehaviour
     {
         if (!TryFindWeapon(weaponData, out WeaponStatus weapon))
         {
-            Debug.Log("삭제할 무기가 없습니다.");
+            // 무기 없으면 리턴
             return false;
         }
 
         weaponMap.Remove(weaponData);
         weaponList.Remove(weapon);
 
-        Debug.Log($"{weapon.WeaponName} 삭제!");
+        // 무기 삭제 이벤트 처리
 
         OnWeaponRemoved?.Invoke(weapon);
         return true;

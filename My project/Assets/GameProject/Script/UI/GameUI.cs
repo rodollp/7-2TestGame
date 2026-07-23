@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TMP_Text eventTime;
     [SerializeField] private TMP_Text playerGold;
     [SerializeField] private TMP_Text playerHp;
+    [SerializeField] private TMP_Text playerExp;
 
     [Header("Message")]
     [SerializeField] private TMP_Text startText;
@@ -81,5 +82,10 @@ public class GameUI : MonoBehaviour
     public void UpdatePlayerHp(int currentHp, int maxHp)
     {
         playerHp.text = $"HP : {currentHp} / {maxHp}";
+    }
+
+    public void UpdatePlayerExp(int currentExp, int maxExp)
+    {
+        playerExp.text = $"Exp : {currentExp} / {maxExp} ";
     }
 }

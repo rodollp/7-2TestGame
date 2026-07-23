@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9ff167baf814048928a76c67c89243, type: 3}
   m_Name: StageData
   m_EditorClassIdentifier: 
-  stageDuration: 150
+  stageDuration: 60
   spawnDatas:
   - startTime: 0
     endTime: 60

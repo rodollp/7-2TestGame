@@ -48,6 +48,7 @@ public class MonsterSpawner : MonoBehaviour
             SpawnMonster(monsterPrefabs);
         }
     }
+    
 
     private void SpawnMonster(MonsterStatus[] monsterPrefabs)
     {
@@ -100,4 +101,6 @@ public class MonsterSpawner : MonoBehaviour
         spawnPosition = hit.position;
         return true;
     }
+
+    
 }

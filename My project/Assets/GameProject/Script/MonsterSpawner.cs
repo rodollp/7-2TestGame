@@ -40,7 +40,6 @@ public class MonsterSpawner : MonoBehaviour
 
         if (monsterPrefabs == null || monsterPrefabs.Length == 0)
         {
-            Debug.LogWarning("SpawnData에 몬스터 프리팹이 없습니다.");
             return;
         }
 
@@ -56,13 +55,11 @@ public class MonsterSpawner : MonoBehaviour
 
         if (selectedPrefab == null)
         {
-            Debug.LogWarning("몬스터 프리팹이 비어 있습니다.");
             return;
         }
 
         if (!TryGetSpawnPosition(out Vector3 spawnPosition))
         {
-            Debug.LogWarning("NavMesh 위에서 소환 위치를 찾지 못했습니다.");
             return;
         }
 
@@ -71,7 +68,6 @@ public class MonsterSpawner : MonoBehaviour
 
         if (monsterManager == null)
         {
-            Debug.LogError("MonsterManager가 연결되어 있지 않습니다.");
             Destroy(spawnedMonster.gameObject);
             return;
         }

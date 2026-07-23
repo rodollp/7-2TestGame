@@ -13,6 +13,9 @@ public class LevelUpManager : MonoBehaviour
 
     private readonly List<LevelUpRewardData> selectedRewards = new();
 
+    private int pendingLevelUpCount;
+    private bool isSelectingReward;
+
     private void OnEnable()
     {
         if (playerStatus != null)
@@ -31,10 +34,34 @@ public class LevelUpManager : MonoBehaviour
 
     private void OpenLevelUp()
     {
-        gameStateManager.OpenLevelUp();
+        pendingLevelUpCount++;
 
+        if (isSelectingReward)
+        {
+            return;
+        }
+
+        isSelectingReward = true;
+
+        if (!ShowNextLevelUp())
+        {
+            FinishLevelUpSelection();
+        }
+    }
+
+    private bool ShowNextLevelUp()
+    {
         SelectRandomRewards(rewardButtons.Length);
+
+        if (selectedRewards.Count == 0)
+        {
+            return false;
+        }
+
+        gameStateManager.OpenLevelUp();
         ShowRewards();
+
+        return true;
     }
 
     private void SelectRandomRewards(int count)
@@ -71,6 +98,7 @@ public class LevelUpManager : MonoBehaviour
             candidates.RemoveAt(randomIndex);
         }
     }
+
     private void ShowRewards()
     {
         for (int i = 0; i < rewardButtons.Length; i++)
@@ -81,23 +109,37 @@ public class LevelUpManager : MonoBehaviour
 
             if (hasReward)
             {
-                rewardButtons[i].Init(
-                    selectedRewards[i],
-                    this);
+                rewardButtons[i].Init(selectedRewards[i],this);
             }
         }
     }
+
     public void SelectReward(LevelUpRewardData reward)
     {
         if (reward == null)
-            return;
-
-        bool isApplied = ApplyReward(reward);
-
-        if (!isApplied)
         {
             return;
         }
+
+        if (!ApplyReward(reward))
+        {
+            return;
+        }
+
+        pendingLevelUpCount--;
+
+        if (pendingLevelUpCount > 0 && ShowNextLevelUp())
+        {
+            return;
+        }
+
+        FinishLevelUpSelection();
+    }
+
+    private void FinishLevelUpSelection()
+    {
+        pendingLevelUpCount = 0;
+        isSelectingReward = false;
 
         gameStateManager.CloseLevelUp();
     }
@@ -107,25 +149,23 @@ public class LevelUpManager : MonoBehaviour
         switch (reward.RewardType)
         {
             case LevelUpRewardType.PlayerStat:
-                playerStatus.ApplyStatUpgrade(
-                    reward.StatType,
-                    reward.Value
-                );
+                playerStatus.ApplyStatUpgrade(reward.StatType,reward.Value);
 
                 return true;
 
             case LevelUpRewardType.Weapon:
-                return weaponInventory.AddWeapon(
-                    reward.WeaponData
-                );
+                return weaponInventory.AddWeapon(reward.WeaponData);
         }
 
         return false;
     }
+
     private bool CanSelectReward(LevelUpRewardData reward)
     {
         if (reward == null)
+        {
             return false;
+        }
 
         switch (reward.RewardType)
         {

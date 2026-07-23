@@ -1,6 +1,6 @@
 # Project Rogue
 
-> Unity 6 기반 3D Action Roguelite
+> Unity 6 기반 3D Action Roguelite Prototype
 
 ---
 
@@ -18,312 +18,144 @@
 
 # 프로젝트 소개
 
-Project Rogue는 Unity 6를 이용하여 제작하는
-3D 액션 로그라이트 게임입니다.
+Project Rogue는 Unity 6를 사용하여 제작 중인 3D 액션 로그라이트 프로젝트입니다.
 
-플레이어는 다양한 캐릭터와 무기를 활용하여
-스테이지를 돌파하고 성장하며,
-최종 보스를 처치하는 것을 목표로 합니다.
+플레이어는 제한 시간 동안 몬스터를 처치하며 경험치를 획득하고,
+레벨업을 통해 무기와 능력치를 성장시킬 수 있습니다.
 
-매 플레이마다 능력 선택을 통해
-다양한 플레이 스타일을 경험할 수 있도록 개발하고 있습니다.
+현재는 전투 루프와 성장 시스템을 중심으로 구현하고 있으며,
+기능을 확장하기 쉬운 구조를 만드는 것을 목표로 개발하고 있습니다.
 
 ---
 
-# 핵심 콘텐츠
+# 현재 구현 기능
 
-- 실시간 액션 전투
-- 로그라이트 성장 시스템
-- 다양한 캐릭터
-- 다양한 무기
-- 랜덤 능력 선택
-- 엘리트 몬스터
-- 보스전
-
----
-
-# 게임 진행
-
-```
-Start
-
-↓
-
-Character Select
-
-↓
-
-Weapon Select
-
-↓
-
-Stage 1
-
-↓
-
-Level Up
-
-↓
-
-Ability Select
-
-↓
-
-Stage 2
-
-↓
-
-Elite Stage
-
-↓
-
-Stage 3
-
-↓
-
-Boss
-
-↓
-
-Game Clear
-```
-
----
-
-# 콘텐츠
-
-## 캐릭터
-
-- Warrior
-- Archer
-- Mage
-
----
-
-## 무기
-
-- Sword
-- Bow
-- Staff
-
----
-
-## 스테이지
-
-- Forest
-- Cave
-- Ruins
-
----
-
-## 몬스터
-
-- Slime
-- Goblin
-- Orc
-- Skeleton
-- Golem
-
----
-
-## 보스
-
-- Dragon
-
----
-
-# 플레이어
-
-### 이동
+### 플레이어
 
 - 이동
-- 점프
-- 대시
-- 회피
+- 카메라 회전
+- 체력 시스템
+- 경험치 및 레벨업
+- 골드 획득
 
 ### 전투
 
-- 일반 공격
-- 스킬 공격
+- 자동 공격
+- 근접 무기
+- 원거리 무기(Projectile)
+- 무기 레벨업
+
+### 몬스터
+
+- NavMesh 기반 추적
+- 플레이어 공격
+- 경험치 / 골드 드롭
 
 ### 성장
 
-- 경험치
-- 레벨업
-- 능력 선택
-- 무기 강화
+- 랜덤 레벨업 보상
+- 능력치 강화
+- 무기 획득 및 강화
+
+### 게임 진행
+
+- 타이틀 화면
+- 게임 시작
+- 게임 오버
+- 게임 클리어
+- 생존 시간 기반 스테이지 진행
 
 ---
 
-# 몬스터 AI
-
-FSM 기반 AI
-
-- Idle
-- Chase
-- Attack
-
-엘리트 몬스터
-
-보스 AI
-
----
-
-# 아이템
-
-- 회복 포션
-- 능력 강화
-- 무기 강화
-- 유물
-
----
-
-# UI
-
-HUD
-
-- HP
-- EXP
-- Level
-- Gold
-- Stage
-
----
-
-# 시스템 구조
+# 프로젝트 구조
 
 ## Player
 
-- PlayerInput
-- PlayerMovement
-- PlayerCombat
 - PlayerStatus
-
----
+- PlayerAttack
+- PlayerWeaponController
+- WeaponInventory
 
 ## Monster
 
-- MonsterAI
-- MonsterCombat
 - MonsterStatus
+- MonsterMove
+- MonsterDamage
+- MonsterDrop
 
----
-
-## Manager
+## System
 
 - GameManager
-- StageManager
-- SpawnManager
-- UIManager
-- AudioManager
-
----
+- GameStateManager
+- GameTimer
+- MonsterManager
+- MonsterSpawnSystem
+- MonsterSpawner
+- LevelUpManager
 
 ## Data
 
-- CharacterData
-- WeaponData
+- PlayerData
 - MonsterData
-- ItemData
-
----
-
-## Item
-
-- Inventory
-- DropItem
+- WeaponData
+- WeaponLevelData
 
 ---
 
 # 사용 기술
 
-## Player
+### Unity
 
+- Unity 6
 - Input System
-- Character Controller
-
-## AI
-
-- FSM
 - NavMesh
-
-## Battle
-
 - Physics
-- Raycast
-- SphereCast
-- KnockBack
+- UI (TextMeshPro)
 
-## Data
+# 구현하면서 중점적으로 고민한 부분
 
-- ScriptableObject
-- List
-- Dictionary
-- Event(Action)
-
-## Unity
-
-- Animation
-- Prefab
-- UI
-- Physics
-
----
-
-# 구현 목표
-
-- 컴포넌트 기반 구조 설계
-- 역할별 클래스 분리
-- FSM 기반 AI
-- 이벤트 기반 시스템
-- 데이터 중심 설계
-- 유지보수가 쉬운 코드 구조
-- 확장 가능한 콘텐츠 구조
+- ScriptableObject를 활용한 데이터 관리
+- 무기 공격 방식의 Strategy Pattern 적용 (전략 패턴)
+- 이벤트 기반 시스템 구성
+- 기능별 Manager 분리
+- 컴포넌트 중심 구조 설계
+- 유지보수를 고려한 클래스 역할 분리
 
 ---
 
 # 개발 예정
 
-- 랜덤 스테이지 생성
-- 랜덤 능력 선택 시스템
-- 유물 시스템
-- 스킬 시스템
-- 저장 / 불러오기
+- Object Pooling
+- 엘리트 몬스터
+- 보스 몬스터
 - 사운드
 - VFX
-- Object Pooling
-- 옵션 메뉴
+- 저장 / 불러오기
 
 ---
 
-# 개발 진행 상황
+# 개발 진행 현황
 
 ## Core
 
-- [] 플레이어 이동
-- [] 전투
-- [ ] 카메라
-- [ ] 몬스터 AI
-
-## Stage
-
-- [ ] 스테이지 진행
-- [ ] 보스 스테이지
-
-## Growth
-
-- [ ] 레벨업
-- [ ] 능력 선택
-- [ ] 아이템
+- [x] 플레이어 이동
+- [x] 자동 전투
+- [x] 무기 시스템
+- [x] 레벨업
+- [x] 몬스터 스폰
+- [x] 게임 진행
 
 ## UI
 
-- [ ] HUD
-- [ ] 결과 화면
+- [x] 타이틀 화면
+- [x] HUD
+- [x] 레벨업 UI
+- [x] 게임 오버
+- [x] 게임 클리어
 
 ## ETC
 
+- [ ] Object Pooling
 - [ ] 사운드
 - [ ] VFX
-- [ ] 저장
-
+- [ ] 보스

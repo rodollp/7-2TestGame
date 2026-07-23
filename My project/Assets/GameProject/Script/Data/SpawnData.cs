@@ -9,13 +9,11 @@ public class SpawnData
     [SerializeField] private int spawnCount;
     [SerializeField] private MonsterStatus[] monsterPrefabs;
 
-    [Header("UI")]
-    [SerializeField] private string spawnMessage;
     public float StartTime => startTime;
     public float EndTime => endTime;
     public float SpawnInterval => spawnInterval;
     public int SpawnCount => spawnCount;
     public MonsterStatus[] MonsterPrefabs => monsterPrefabs;
 
-    public string SpawnMessage => spawnMessage;
+    
 }

@@ -28,7 +28,6 @@ public class MonsterSpawnSystem : MonoBehaviour
 
         if (currentSpawnData == null)
         {
-            Debug.Log($"현재 SpawnData없음 / {gameTimer.PlayTime}");
             return;
         }
 

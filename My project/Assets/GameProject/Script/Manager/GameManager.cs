@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
             return;
 
         isGameFinished = true;
-        //gameStateManager.GameClear();
+        gameStateManager.GameClear();
     }
 
     public void ResetGame()

@@ -14,6 +14,8 @@ public class MonsterStatus : CreatureStatus
     public string Name {  get; private set; }
 
     public float AttackCoolDown {get; private set; }
+
+    public event Action OnChangeHp;
     private void Awake()
     {
         MaxHp = data.MaxHp;
@@ -33,6 +35,7 @@ public class MonsterStatus : CreatureStatus
     {
         if(IsDead) return;
         base.TakeDamage(damage);
+        OnChangeHp?.Invoke();
         //Debug.Log($"Hp : {CurrentHp}/{MaxHp}"); 이벤트 적용?
     }
 

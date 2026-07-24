@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 8849832855697017462}
   - component: {fileID: 8206445985023393100}
   - component: {fileID: 5555213672922572899}
+  - component: {fileID: 6588339093509231128}
   m_Layer: 6
   m_Name: Godiln
   m_TagString: Monster
@@ -228,6 +229,21 @@ MonoBehaviour:
   expOrbPrefab: {fileID: 3268870417498831781, guid: 3f3d562361434a34ea91a2c250daf408, type: 3}
   goldOrbPrefab: {fileID: 428302880727905232, guid: dbfc8a738576bdd41bbe2f7d4e9be056, type: 3}
   playerWallet: {fileID: 0}
+--- !u!114 &6588339093509231128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223818793807292092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89201381ec68fd44291a4ccb7fb6dc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterHitEffect
+  monsterStatus: {fileID: 5308425265159342371}
+  monsterRenderer: {fileID: 9072192703380428157}
+  flashDuration: 0.1
 --- !u!1 &5635491043650640173
 GameObject:
   m_ObjectHideFlags: 0

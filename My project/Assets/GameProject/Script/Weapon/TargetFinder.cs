@@ -3,36 +3,38 @@ using UnityEngine;
 
 public class TargetFinder : MonoBehaviour
 {
+    [SerializeField] private MonsterManager monsterManager;
 
-    public IDamageable FindNearestTarget(Vector3 orgin, float range)
+    private void Awake()
     {
-        MonsterStatus[] monsters = FindObjectsByType<MonsterStatus>(FindObjectsSortMode.None);
+        if (monsterManager == null)
+        {
+            monsterManager = FindAnyObjectByType<MonsterManager>();
+        }
+    }
 
+    public IDamageable FindNearestTarget(Vector3 origin, float range)
+    {
         IDamageable target = null;
         float nearestDistance = float.MaxValue;
 
-        foreach (MonsterStatus monster in monsters)
+        foreach (MonsterStatus monster in monsterManager.AliveMonsters)
         {
             if (monster.IsDead)
-            {
                 continue;
-            }
-            
-            float distance = Vector3.Distance(orgin,monster.transform.position);
+
+            float distance = Vector3.Distance(origin, monster.transform.position);
+
             if (distance > range)
-            {
                 continue;
-            }
 
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
                 target = monster;
             }
-
         }
 
         return target;
     }
-
 }

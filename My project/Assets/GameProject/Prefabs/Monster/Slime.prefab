@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3731561124830388116}
   - component: {fileID: 6950554901804605572}
   - component: {fileID: 5304592041247092163}
+  - component: {fileID: 2187094019411948745}
   m_Layer: 6
   m_Name: Slime
   m_TagString: Monster
@@ -127,6 +128,21 @@ MonoBehaviour:
   expOrbPrefab: {fileID: 3268870417498831781, guid: 3f3d562361434a34ea91a2c250daf408, type: 3}
   goldOrbPrefab: {fileID: 428302880727905232, guid: dbfc8a738576bdd41bbe2f7d4e9be056, type: 3}
   playerWallet: {fileID: 0}
+--- !u!114 &2187094019411948745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297653405178426665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89201381ec68fd44291a4ccb7fb6dc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterHitEffect
+  monsterStatus: {fileID: 5285075149903092960}
+  monsterRenderer: {fileID: 8985857581279660673}
+  flashDuration: 0.1
 --- !u!1 &2431654558284553840
 GameObject:
   m_ObjectHideFlags: 0

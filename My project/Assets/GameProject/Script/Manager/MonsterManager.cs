@@ -7,6 +7,7 @@ public class MonsterManager : MonoBehaviour
     private readonly HashSet<MonsterStatus> aliveMonsters = new();
     private readonly Dictionary<MonsterStatus, Action> deathCallbacks = new();
 
+    public IReadOnlyCollection<MonsterStatus> AliveMonsters => aliveMonsters;
     public int AliveMonsterCount => aliveMonsters.Count;
 
     public event Action OnAllMonstersDead;

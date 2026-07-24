@@ -24,7 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void Awake()
     {
-        attackContext = new AttackContext(playerAttack, projectileSpawner);
+        attackContext = new AttackContext(playerAttack, projectileSpawner,targetFinder,transform);
     }
     private void Update()
     {
@@ -97,13 +97,15 @@ public class PlayerWeaponController : MonoBehaviour
     /// </returns>
     private bool TryAttack(WeaponStatus weapon)
     {
-        IDamageable target = targetFinder.FindNearestTarget(transform.position, weapon.CurrentData.Range);
-
-        if (target == null)
+        if (weapon == null)
             return false;
 
-        weapon.Data.AttackStrategy.Attack(attackContext, weapon, target);
+        if (weapon.Data == null)
+            return false;
 
-        return true;
+        if (weapon.Data.AttackStrategy == null)
+            return false;
+
+        return weapon.Data.AttackStrategy.Attack(attackContext,weapon);
     }
 }

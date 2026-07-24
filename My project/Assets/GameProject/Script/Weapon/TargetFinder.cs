@@ -1,4 +1,5 @@
 using Assets.GameProject.Script;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetFinder : MonoBehaviour
@@ -13,17 +14,17 @@ public class TargetFinder : MonoBehaviour
         }
     }
 
-    public IDamageable FindNearestTarget(Vector3 origin, float range)
+    public IDamageable FindNearestTarget(Vector3 origin,float range)
     {
         IDamageable target = null;
         float nearestDistance = float.MaxValue;
 
         foreach (MonsterStatus monster in monsterManager.AliveMonsters)
         {
-            if (monster.IsDead)
+            if (monster == null || monster.IsDead)
                 continue;
 
-            float distance = Vector3.Distance(origin, monster.transform.position);
+            float distance =Vector3.Distance(origin,monster.transform.position);
 
             if (distance > range)
                 continue;
@@ -36,5 +37,26 @@ public class TargetFinder : MonoBehaviour
         }
 
         return target;
+    }
+
+    public List<IDamageable> FindTargetsInRange(Vector3 origin,float range)
+    {
+        List<IDamageable> targets = new();
+
+        foreach (MonsterStatus monster in monsterManager.AliveMonsters)
+        {
+            if (monster == null || monster.IsDead)
+                continue;
+
+            float distance =
+                Vector3.Distance(origin,monster.transform.position);
+
+            if (distance <= range)
+            {
+                targets.Add(monster);
+            }
+        }
+
+        return targets;
     }
 }

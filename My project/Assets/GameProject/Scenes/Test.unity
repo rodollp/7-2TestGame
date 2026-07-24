@@ -3945,6 +3945,7 @@ MonoBehaviour:
   levelUpPanel: {fileID: 230758735}
   gameOverPanel: {fileID: 2047965131}
   gameClearPanel: {fileID: 1153619252}
+  cameraRotate: {fileID: 3020729560727428710}
   gameUI: {fileID: 630753602}
 --- !u!4 &1348357736
 Transform:
@@ -6957,6 +6958,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+--- !u!114 &3020729560727428710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7860255422733719503, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}
+  m_PrefabInstance: {fileID: 3020729560727428709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8169cbff5511c74baa33e4f87c250d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraRotate
 --- !u!4 &3020729560727428711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6845162508471142276, guid: 8684a0bf3648ad349ab06a9593006491, type: 3}

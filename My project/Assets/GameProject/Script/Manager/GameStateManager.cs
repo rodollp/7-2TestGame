@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
@@ -11,6 +12,9 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameClearPanel;
 
+    [Header("카메라 회전 관리")]
+    [SerializeField] private CameraRotate cameraRotate;
+
     [Header("연출")]
     [SerializeField] private GameUI gameUI;
     public GameState CurrentState { get; private set; }
@@ -20,7 +24,6 @@ public class GameStateManager : MonoBehaviour
         ChangeState(GameState.Title);
     }
 
-    
 
     public void ChangeState(GameState newState)
     {
@@ -54,6 +57,7 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(true);
         SetCursorState(true);
+        SetCameraRotate(false);
         SetPanels(showTitle: true,showGame: false,showLevelUp: false,showGameOver: false, showGameClear: false);
     }
 
@@ -61,6 +65,7 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(false);
         SetCursorState(false);
+        SetCameraRotate(true);
         SetPanels(showTitle: false,showGame: true,showLevelUp: false,showGameOver: false, showGameClear: false);
     }
 
@@ -68,6 +73,7 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(true);
         SetCursorState(true);
+        SetCameraRotate(false);
         SetPanels(showTitle: false,showGame: true,showLevelUp: true,showGameOver: false, showGameClear: false);
     }
 
@@ -75,6 +81,7 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(true);
         SetCursorState(true);
+        SetCameraRotate(false);
         SetPanels(showTitle: false,showGame: false,showLevelUp: false,showGameOver: true,showGameClear: false);
     }
 
@@ -82,7 +89,7 @@ public class GameStateManager : MonoBehaviour
     {
         SetGamePaused(true);
         SetCursorState(true);
-
+        SetCameraRotate(false);
         SetPanels(showTitle: false,showGame: false,showLevelUp: false,showGameOver: false,showGameClear: true);
     }
     private void SetGamePaused(bool isPaused)
@@ -95,7 +102,13 @@ public class GameStateManager : MonoBehaviour
         Cursor.visible = isVisible;
         Cursor.lockState = isVisible? CursorLockMode.None : CursorLockMode.Locked;
     }
+    private void SetCameraRotate(bool canRotate)
+    {
+        if (cameraRotate == null)
+            return;
 
+        cameraRotate.SetRotate(canRotate);
+    }
     private void SetPanels(bool showTitle,bool showGame,bool showLevelUp,bool showGameOver ,bool showGameClear)
     {
         titlePanel.SetActive(showTitle);

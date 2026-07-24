@@ -6,19 +6,26 @@ public class ArrowAttack : AttackStrategy
 {
     [SerializeField] private Projectile projectilePrefab;
 
-    public override void Attack(AttackContext context,WeaponStatus weapon,IDamageable target)
+    public override bool Attack(AttackContext context,WeaponStatus weapon)
     {
-        MonoBehaviour targetObject = target as MonoBehaviour;
+        IDamageable target = context.TargetFinder.FindNearestTarget(context.AttackerTransform.position,weapon.CurrentData.Range);
+
+        MonoBehaviour targetObject =target as MonoBehaviour;
 
         if (targetObject == null)
-            return;
+            return false;
 
-        Vector3 origin =context.ProjectileSpawner.SpawnPosition;
+        Vector3 origin = context.ProjectileSpawner.SpawnPosition;
 
         Vector3 direction =(targetObject.transform.position - origin).normalized;
 
-        Projectile projectile =context.ProjectileSpawner.Spawn(projectilePrefab,direction);
+        Projectile projectile = context.ProjectileSpawner.Spawn(projectilePrefab,direction);
+
+        if (projectile == null)
+            return false;
 
         projectile.Init(direction,weapon.CurrentData.ProjectileSpeed,context.PlayerAttack,weapon);
+
+        return true;
     }
 }

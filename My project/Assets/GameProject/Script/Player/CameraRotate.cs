@@ -15,6 +15,7 @@ public class CameraRotate : MonoBehaviour
 
     private void Update()
     {
+        if (!canRotate) return;
         
         if (Mouse.current == null) return;
 

@@ -22,31 +22,37 @@ public class ExpOrb : MonoBehaviour
     public void Init(int exp)
     {
         expAmount = exp;
+        isChasing = false;
     }
 
     private void MoveToPlayer()
     {
-        if (player == null) return;
+        if (player == null)
+            return;
 
-        Vector3 dir = player.transform.position - transform.position;
-        float distance = dir.magnitude;
+        float distance = Vector3.Distance(transform.position,player.transform.position);
 
-        
         if (!isChasing)
         {
-            if (distance > player.CollectionRange) return;
+            if (distance > player.CollectionRange)
+                return;
 
-        
             isChasing = true;
         }
 
-        
-        transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position,player.transform.position,moveSpeed * Time.deltaTime);
 
-        if (distance <= collectDistance)
+        float distanceAfterMove = Vector3.Distance(transform.position , player.transform.position);
+
+        if (distanceAfterMove <= collectDistance)
         {
-            player.AddExp(expAmount);
-            Destroy(gameObject);
+            Collect();
         }
+    }
+
+    private void Collect()
+    {
+        player.AddExp(expAmount);
+        Destroy(gameObject);
     }
 }

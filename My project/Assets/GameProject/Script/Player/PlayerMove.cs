@@ -13,18 +13,47 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
 
-        if (status == null) status = GetComponent<PlayerStatus>();
-        if (input == null) input = GetComponent<PlayerInputHandler>();
+        if (status == null)
+        {
+            status = GetComponent<PlayerStatus>();
+        }
 
-        
+        if (input == null)
+        {
+            input = GetComponent<PlayerInputHandler>();
+        }
+
+        if (rb == null)
+        {
+            Debug.LogError("PlayerMove에 Rigidbody가 없습니다.");
+            enabled = false;
+            return;
+        }
+
+        if (status == null || input == null)
+        {
+            Debug.LogError("PlayerMove에 필요한 컴포넌트가 없습니다.");
+            enabled = false;
+            return;
+        }
+
+        if (groundCheck == null || cameraRoot == null)
+        {
+            Debug.LogError("PlayerMove의 GroundCheck 또는 CameraRoot가 연결되지 않았습니다.");
+            enabled = false;
+        }
     }
 
     private void Update()
     {
-        if (input.JumpPressed)
-            Jump();
+        if (!input.JumpPressed)
+        {
+            return;
+        }
+
+        Jump();
+        input.ConsumeJumpInput();
     }
 
     private void FixedUpdate()
@@ -45,16 +74,19 @@ public class PlayerMove : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        Vector3 moveDir = camForward * moveInput.y + camRight * moveInput.x;
+        Vector3 moveDirection = camForward * moveInput.y + camRight * moveInput.x;
 
-        rb.linearVelocity = new Vector3(moveDir.x * status.MoveSpeed,rb.linearVelocity.y,moveDir.z * status.MoveSpeed);
+        rb.linearVelocity = new Vector3(moveDirection.x * status.MoveSpeed, rb.linearVelocity.y, moveDirection.z * status.MoveSpeed);
     }
+
     private void Jump()
     {
-        if (CheckGround())
+        if (!CheckGround())
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x,status.JumpPower,rb.linearVelocity.z);
+            return;
         }
+
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, status.JumpPower, rb.linearVelocity.z);
     }
 
     private bool CheckGround()

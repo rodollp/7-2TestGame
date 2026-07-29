@@ -63,9 +63,7 @@ public class GameTimer : MonoBehaviour
 
         foreach (SpawnData spawnData in spawnDatas)
         {
-            bool isCurrentWave =
-                playTime >= spawnData.StartTime &&
-                playTime < spawnData.EndTime;
+            bool isCurrentWave = playTime >= spawnData.StartTime && playTime < spawnData.EndTime;
 
             if (isCurrentWave)
             {

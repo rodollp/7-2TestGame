@@ -59,8 +59,7 @@ public class Projectile : MonoBehaviour
         if (other.transform.root == owner.transform.root)
             return;
 
-        IDamageable target =
-            other.GetComponentInParent<IDamageable>();
+        IDamageable target = other.GetComponentInParent<IDamageable>();
 
         if (target == null)
             return;

@@ -9,19 +9,15 @@ public class ExpOrb : MonoBehaviour
     private int expAmount;
     private bool isChasing;
 
-    private void Awake()
-    {
-        player = FindAnyObjectByType<PlayerStatus>();
-    }
-
     private void Update()
     {
         MoveToPlayer();
     }
 
-    public void Init(int exp)
+    public void Init(int exp ,PlayerStatus target)
     {
         expAmount = exp;
+        player = target;
         isChasing = false;
     }
 

@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 5485636002039593930}
   - component: {fileID: 385219871290164541}
   - component: {fileID: 8714932010688272456}
+  - component: {fileID: 8212985731270832758}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -469,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e8f27952588874ca7cb5a8692c20b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterManager: {fileID: 0}
 --- !u!114 &8714932010688272456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +485,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StartingWeapon
   playerData: {fileID: 11400000, guid: d4d7781a014380c47b61c9c4b2e6e91a, type: 2}
   weaponInventory: {fileID: 5485636002039593930}
+--- !u!114 &8212985731270832758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8272927003648111707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: d35332d704b05284486c8dc34129d917, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 4b461518-43b9-41bf-ae25-e4a07a267844
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8671561742610010914
 GameObject:
   m_ObjectHideFlags: 0

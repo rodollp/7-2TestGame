@@ -2,18 +2,33 @@ using UnityEngine;
 
 public class Work : MonoBehaviour
 {
-    public MonsterStatus MonsterStatus;
+    private float timer;
+    private float cooldown;
 
-
-    public MonsterStatus FindWeakestTarget(Vector3 player,float attackRange, MonsterStatus[] monsters)
+    public Work(float cooldown)
     {
-        if(monsters.Length == 0)
+        this.cooldown = cooldown;
+    }
+
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
+    private bool CanAttack()
+    {
+        if(cooldown > timer)
         {
-            return null;    
+            return false;
         }
+        return true;
+    }
 
 
+    private void ResetTimer()
+    {
+        CanAttack();
+        timer = 0f;
 
-        return FindWeakestTarget(player,attackRange, monsters);
     }
 }

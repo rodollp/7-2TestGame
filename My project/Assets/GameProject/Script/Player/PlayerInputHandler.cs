@@ -6,39 +6,24 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public bool JumpPressed { get; private set; }
 
-    private void Update()
+    // Move Action이 입력되거나 입력이 끝날 때 호출된다.
+    public void OnMove(InputValue value)
     {
-        if (Keyboard.current == null) return;
-
-        ReadMoveInput();
-        ReadJumpInput();
+        MoveInput = value.Get<Vector2>();
     }
 
-    private void LateUpdate()
+    // Jump Action의 입력 상태가 변경될 때 호출된다.
+    public void OnJump(InputValue value)
     {
-        // 한 프레임 입력은 다른 스크립트들이 읽은 뒤 초기화
-        JumpPressed = false;
-    }
-
-    private void ReadMoveInput()
-    {
-        float h = 0f;
-        float v = 0f;
-
-        if (Keyboard.current.aKey.isPressed) h = -1f;
-        if (Keyboard.current.dKey.isPressed) h = 1f;
-        if (Keyboard.current.wKey.isPressed) v = 1f;
-        if (Keyboard.current.sKey.isPressed) v = -1f;
-
-        MoveInput = new Vector2(h, v);
-
-        if (MoveInput.sqrMagnitude > 1f)
-            MoveInput = MoveInput.normalized;
-    }
-
-    private void ReadJumpInput()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (value.isPressed)
+        {
             JumpPressed = true;
+        }
+    }
+
+    // 점프 입력을 사용한 뒤 호출한다.
+    public void ConsumeJumpInput()
+    {
+        JumpPressed = false;
     }
 }

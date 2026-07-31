@@ -12,6 +12,7 @@ public class SwordAttack : AttackStrategy
         if (targets.Count == 0)
             return false;
 
+
         foreach (IDamageable target in targets)
         {
             context.PlayerAttack.Damage(weapon,target);

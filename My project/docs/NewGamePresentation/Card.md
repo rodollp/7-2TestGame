@@ -64,12 +64,3 @@
 - 남은 에너지
 - 카드 이동 결과
 
-## 관련 클래스
-
-- BattleManager
-- TurnManager
-- CardManager
-- HandManager
-- DeckManager
-- EnergyManager
-- EffectResolver

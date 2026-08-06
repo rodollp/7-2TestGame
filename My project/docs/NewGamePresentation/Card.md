@@ -9,7 +9,9 @@
 
 ## 시스템 흐름도
 
-![카드 사용 시스템](Images/CardUseSystem.png)
+## 카드 사용 시스템
+
+![카드 사용 시스템](Images/CardSystem.png)
 
 ---
 
